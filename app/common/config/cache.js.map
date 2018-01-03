@@ -1,0 +1,24 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\cache.js"
+    ],
+    "names": [
+        "type",
+        "adapter",
+        "file",
+        "timeout",
+        "path",
+        "think",
+        "RUNTIME_PATH",
+        "path_depth",
+        "file_ext",
+        "redis",
+        "prefix"
+    ],
+    "mappings": ";;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;kBACe;AACXA,UAAM,MADK,EACG;AACdC,aAAS;AACLC,cAAM;AACFC,qBAAS,IAAI,IADX,EACiB;AACnBC,kBAAMC,MAAMC,YAAN,GAAqB,QAFzB,EAEmC;AACrCC,wBAAY,CAHV,EAGa;AACfC,sBAAU,OAJR,CAIgB;AAJhB,SADD;AAOLC,eAAO;AACHC,oBAAQ,UADL,CACiB;AADjB;AAPF;AAFE,C",
+    "file": "..\\..\\..\\src\\common\\config\\cache.js",
+    "sourcesContent": [
+        "// export default {\n//     type: \"redis\", //缓存类型\n//     timeout: 6 * 3600, //失效时间，单位：秒\n//     adapter: { //不同 adapter 下的配置\n//         file: {\n//             path: think.RUNTIME_PATH + \"/cache\", //缓存文件的根目录\n//             path_depth: 2, //缓存文件生成子目录的深度\n//             file_ext: \".json\" //缓存文件的扩展名\n//         },\n//         redis: {\n//             prefix: \"thinkjs_\"\n//         }\n//     }\n// };\nexport default {\n    type: \"file\", //缓存方式\n    adapter: {\n        file: {\n            timeout: 1 * 3600, //6 hours\n            path: think.RUNTIME_PATH + \"/cache\", //文件缓存模式下缓存内容存放的目录\n            path_depth: 2, //子目录深度\n            file_ext: \".json\" //缓存文件的扩展名\n        },\n        redis: {\n            prefix: \"thinkjs_\", //缓存名称前缀\n        }\n    }\n};"
+    ]
+}

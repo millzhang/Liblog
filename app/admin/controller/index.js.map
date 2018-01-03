@@ -1,0 +1,28 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\index.js"
+    ],
+    "names": [
+        "indexAction",
+        "assign",
+        "session",
+        "uinfo",
+        "model",
+        "getUserJoinRecord",
+        "manage_role",
+        "on",
+        "name",
+        "userInfo",
+        "rolename",
+        "display",
+        "logoutAction",
+        "redirect",
+        "welcomeAction"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;AAEE;;;;uBAIMA,W;;;;;;;AACA,+CAAKC,MAAL,CAAY,OAAZ,EAAoB,MAApB;;iDACgB,KAAKC,OAAL,CAAa,UAAb,C;;;AAAZC,+C;;iDACe,KAAKC,KAAL,CAAW,OAAX,EAAoBC,iBAApB,CAAsC,EAACC,aAAY,EAACC,IAAG,SAAJ,EAAb,EAAtC,EAAmE,EAACC,MAAKL,MAAMK,IAAZ,EAAnE,C;;;AAAfC,kD;;AACJ,+CAAKR,MAAL,CAAY,UAAZ,EAAuBQ,SAASC,QAAhC;AACA,+CAAKT,MAAL,CAAY,WAAZ,EAAwBE,MAAMK,IAA9B;2EACO,KAAKG,OAAL,E;;;;;;;;;;;;;;;;;uBAEPC,Y;;;;;;;iDACK,KAAKV,OAAL,CAAa,UAAb,EAAwB,EAAxB,C;;;4EACE,KAAKW,QAAL,CAAc,cAAd,C;;;;;;;;;;;;;;;;;uBAEbC,a,4BAAe;AACX,iBAAKb,MAAL,CAAY,OAAZ,EAAoB,OAApB;AACA,mBAAO,KAAKU,OAAL,EAAP;AACH,O",
+    "file": "..\\..\\..\\src\\admin\\controller\\index.js",
+    "sourcesContent": [
+        "'use strict';\n\nimport Base from './base.js';\nexport default class extends Base {\n  /**\n   * index action\n   * @return {Promise} []\n   */\n  async indexAction(){\n        this.assign(\"title\",\"后台管理\");\n        let uinfo=await this.session('userInfo');\n        let userInfo=await this.model('admin').getUserJoinRecord({manage_role:{on:\"role,id\"}},{name:uinfo.name});\n        this.assign(\"roleName\",userInfo.rolename);\n        this.assign(\"loginName\",uinfo.name);\n        return this.display();\n  }\n  async logoutAction(){\n       await this.session(\"userInfo\",\"\");\n        return this.redirect(\"/admin/login\");\n  }\n  welcomeAction(){\n      this.assign(\"title\",\"欢迎登录！\");\n      return this.display();\n  }\n}\n"
+    ]
+}

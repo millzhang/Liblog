@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\csrf.js"
+    ],
+    "names": [
+        "session_name",
+        "form_name",
+        "errno",
+        "on",
+        "errmsg"
+    ],
+    "mappings": ";;;kBAAe;AACbA,gBAAc,UADD,EACa;AAC1BC,aAAW,UAFE,EAEU;AACvBC,SAAO,GAHM,EAGD;AACZC,MAAI,IAJS;AAKbC,UAAQ,aALK,CAKS;AALT,C",
+    "file": "..\\..\\..\\src\\common\\config\\csrf.js",
+    "sourcesContent": [
+        "export default {\n  session_name: \"__CSRF__\", // Token 值存在 session 的名字\n  form_name: \"__CSRF__\", // CSRF 字段名字，从该字段获取值校验\n  errno: 400, //错误号\n  on: true,\n  errmsg: \"token error\" // 错误信息\n};"
+    ]
+}

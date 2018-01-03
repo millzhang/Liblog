@@ -1,0 +1,45 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\base.js"
+    ],
+    "names": [
+        "__before",
+        "getConfig",
+        "session",
+        "userinfo",
+        "think",
+        "isEmpty",
+        "redirect",
+        "assign",
+        "myurl",
+        "http",
+        "module",
+        "controller",
+        "action",
+        "uinfo",
+        "username",
+        "name",
+        "model",
+        "findOne",
+        "userData",
+        "id",
+        "role",
+        "roleData",
+        "permissions",
+        "permission",
+        "split",
+        "indexOf",
+        "method",
+        "fail",
+        "display",
+        "csrf",
+        "sysdata",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGE;;;qBAGQA,Q;;;;;;;;mCACI,KAAKC,SAAL,E;;;;mCAEa,KAAKC,OAAL,CAAa,UAAb,C;;;AAAfC,oC;;iCACDC,MAAMC,OAAN,CAAcF,QAAd,C;;;;;6DACQ,KAAKG,QAAL,CAAc,iBAAd,C;;;AAEP,iCAAKC,MAAL,CAAY,UAAZ,EAAuBJ,QAAvB;;;AAEJ;;AAEA;AACIK,iC,GAAM,KAAKC,IAAL,CAAUC,MAAV,GAAiB,GAAjB,GAAqB,KAAKD,IAAL,CAAUE,UAA/B,GAA0C,GAA1C,GAA8C,KAAKF,IAAL,CAAUG,M;;mCAClD,KAAKV,OAAL,CAAa,UAAb,C;;;AAAZW,iC;AACAC,oC,GAASD,MAAME,I;;mCACA,KAAKC,KAAL,CAAW,OAAX,EAAoBC,OAApB,CAA4B,MAA5B,EAAmC,EAACF,MAAKD,QAAN,EAAnC,C;;;AAAfI,oC;;mCACe,KAAKF,KAAL,CAAW,OAAX,EAAoBC,OAApB,CAA4B,aAA5B,EAA0C,EAACE,IAAGD,SAASE,IAAb,EAA1C,C;;;AAAfC,oC;AACAC,uC,GAAaD,SAASE,UAAV,CAAsBC,KAAtB,CAA4B,GAA5B,C;;AAEhB;;kCACGF,YAAYG,OAAZ,CAAoBjB,KAApB,IAA2B,C;;;;;kCACzB,KAAKC,IAAL,CAAUiB,MAAV,KAAmB,M;;;;;6DACX,KAAKC,IAAL,CAAU,uBAAV,C;;;6DAEA,KAAKC,OAAL,CAAa,0BAAb,C;;;;mCAME,KAAK1B,OAAL,CAAa,UAAb,C;;;AAAX2B,gC;;AACJ,iCAAKtB,MAAL,CAAY,MAAZ,EAAmBsB,IAAnB;;;;;;;;;;;;;;;;;qBAGE5B,S;;;;;;;;mCACgB,KAAKe,KAAL,CAAW,OAAX,EAAoBC,OAApB,CAA4B,QAA5B,C;;;AAAda,mC;;AACJ,iCAAKvB,MAAL,CAAY,MAAZ,EAAmBuB,OAAnB;;;;;;;;;;;;;;;;;;EAxCqB1B,MAAMO,UAAN,CAAiBoB,I",
+    "file": "..\\..\\..\\src\\admin\\controller\\base.js",
+    "sourcesContent": [
+        "'use strict';\n\nexport default class extends think.controller.base {\n  /**\n   * some base method in here\n   */\n    async __before() {\n        await this.getConfig();\n        //判断登录\n        let userinfo=await this.session(\"userInfo\");\n        if(think.isEmpty(userinfo)){\n            return this.redirect(\"/admin/redirect\");\n        }else{\n            this.assign('userinfo',userinfo);\n        }\n        //判断登录\n\n        //判断权限\n        let myurl=this.http.module+\"/\"+this.http.controller+\"/\"+this.http.action;\n        let uinfo=await this.session('userInfo');\n        let username=uinfo.name;\n        let userData=await this.model('admin').findOne('user',{name:username});\n        let roleData=await this.model('admin').findOne('manage_role',{id:userData.role});\n        let permissions=(roleData.permission).split(\",\");\n\n        //没有权限\n        if(permissions.indexOf(myurl)<0){\n          if(this.http.method==='POST'){\n              return this.fail(\"抱歉，您没有权限访问,请与系统管理员联系!\");\n          }else{\n              return this.display(\"admin/error/nopermission\");\n          }\n        }\n        //判断权限\n\n        // csrf 防止模拟提交\n        let csrf=await this.session(\"__CSRF__\");\n        this.assign(\"csrf\",csrf);\n\n    }\n    async getConfig() {\n        let sysdata=await this.model('admin').findOne('system');\n        this.assign('_web',sysdata);\n    }\n}\n"
+    ]
+}

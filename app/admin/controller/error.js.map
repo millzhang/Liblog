@@ -1,0 +1,16 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\error.js"
+    ],
+    "names": [
+        "nopermissionAction",
+        "assign",
+        "display"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AACA;;;;;;;;;;;;;;AAEE;;;;qBAIUA,kB;;;;;;AACF,iCAAKC,MAAL,CAAY,OAAZ,EAAoB,OAApB;6DACO,KAAKC,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\error.js",
+    "sourcesContent": [
+        "'use strict';\nimport Base from './base.js';\nexport default class extends Base {\n  /**\n   * index action\n   * @return {Promise} []\n   */\n      async nopermissionAction(){\n          this.assign(\"title\",\"访问受限!\");\n          return this.display();\n      }\n}\n"
+    ]
+}

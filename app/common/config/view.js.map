@@ -1,0 +1,31 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\view.js"
+    ],
+    "names": [
+        "type",
+        "content_type",
+        "file_ext",
+        "file_depr",
+        "root_path",
+        "think",
+        "ROOT_PATH",
+        "adapter",
+        "nunjucks",
+        "prerender",
+        "env",
+        "addFilter",
+        "str",
+        "count",
+        "slice",
+        "addExtension",
+        "article",
+        "topic"
+    ],
+    "mappings": "AAAA;AACA;;;;;kBAGe;AACbA,QAAM,UADO;AAEbC,gBAAc,WAFD;AAGbC,YAAU,OAHG;AAIbC,aAAW,GAJE;AAKbC,aAAWC,MAAMC,SAAN,GAAkB,OALhB;AAMbC,WAAS;AACPC,cAAU;AACRC,iBAAW,mBAACD,QAAD,EAAWE,GAAX,EAAmB;AAC1B;AACAA,YAAIC,SAAJ,CAAc,SAAd,EAAyB,UAASC,GAAT,EAAcC,KAAd,EAAqB;AAC1C,iBAAOD,IAAIE,KAAJ,CAAU,CAAV,EAAaD,SAAS,CAAtB,CAAP;AACH,SAFD;AAGAH,YAAIC,SAAJ,CAAc,SAAd,EAAyB,UAASC,GAAT,EAAc;AACnC,cAAGA,OAAK,KAAR,EAAc;AACZ,mBAAO,IAAP;AACD,WAFD,MAEM,IAAGA,OAAK,OAAR,EAAgB;AACpB,mBAAO,IAAP;AACD,WAFK,MAEA,IAAGA,OAAK,KAAR,EAAc;AAClB,mBAAO,IAAP;AACD,WAFK,MAEA,IAAGA,OAAK,QAAR,EAAiB;AACrB,mBAAO,QAAP;AACD,WAFK,MAEA,IAAGA,OAAK,YAAR,EAAqB;AACzB,mBAAO,YAAP;AACD,WAFK,MAEA,IAAGA,OAAK,SAAR,EAAkB;AACtB,mBAAO,SAAP;AACD;AACJ,SAdD;AAeAF,YAAIK,YAAJ,CAAiB,SAAjB,EAA4B,IAAIC,OAAJ,EAA5B,EAA2C,IAA3C;AACAN,YAAIK,YAAJ,CAAiB,OAAjB,EAA0B,IAAIE,KAAJ,EAA1B,EAAuC,IAAvC;AACH;AAvBO;AADH;AANI,C",
+    "file": "..\\..\\..\\src\\common\\config\\view.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * template config\n */\nexport default {\n  type: 'nunjucks',\n  content_type: 'text/html',\n  file_ext: '.html',\n  file_depr: '_',\n  root_path: think.ROOT_PATH + '/view',\n  adapter: {\n    nunjucks: {\n      prerender: (nunjucks, env) => {\n          //截取字符串\n          env.addFilter('shorten', function(str, count) {\n              return str.slice(0, count || 5);\n          });\n          env.addFilter('tagname', function(str) {\n              if(str=='job'){\n                return '招聘';\n              }else if(str=='share'){\n                return '分享';\n              }else if(str=='ask'){\n                return '问答';\n              }else if(str=='liblog'){\n                return 'liblog';\n              }else if(str=='wangeditor'){\n                return 'wangeditor';\n              }else if(str=='thinkjs'){\n                return 'thinkjs';\n              }\n          });\n          env.addExtension('article', new article(), true);\n          env.addExtension('topic', new topic(), true);\n      }\n    }\n  }\n};\n"
+    ]
+}

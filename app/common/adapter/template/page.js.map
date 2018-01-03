@@ -1,0 +1,37 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\..\\src\\common\\adapter\\template\\page.js"
+    ],
+    "names": [
+        "init",
+        "http",
+        "pagination",
+        "pageData",
+        "pageNumber",
+        "page",
+        "get",
+        "nextclass",
+        "preclass",
+        "nextlink",
+        "prelink",
+        "currentPage",
+        "totalPages",
+        "nextpage",
+        "numsPerPage",
+        "prepage",
+        "pageStart",
+        "pageNum",
+        "pageEnd",
+        "pageNow",
+        "count",
+        "think",
+        "adapter",
+        "base"
+    ],
+    "mappings": "AAAA;AACA;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAIE;;;;;AAKE;AACA;AACA;AACA;AACA;AACA;AACA;qBACAA,I,iBAAKC,I,EAAK;AACN,sCAAMD,IAAN,YAAWC,IAAX;AACA,aAAKA,IAAL,GAAYA,IAAZ;AACH,K;;qBACDC,U,uBAAWC,Q,EAASC,U,EAAW;AAC3B,YAAIC,OAAK,EAAT;AACA,YAAGD,UAAH,EAAc;AACZC,mBAAKD,UAAL;AACD,SAFD,MAEM;AACJC,mBAAK,KAAKJ,IAAL,CAAUK,GAAV,CAAc,MAAd,KAAuB,CAA5B;AACD;AACD,YAAIC,YAAU,EAAd;AAAA,YAAiBC,WAAS,EAA1B;AAAA,YAA6BC,WAAS,EAAtC;AAAA,YAAyCC,UAAQ,EAAjD;AACA,YAAGL,IAAH,EAAQ;;AAEJ;AACA,gBAAGF,SAASQ,WAAT,KAAuBR,SAASS,UAAnC,EAA8C;AACtCL,4BAAU,UAAV;AACAE,2BAAS,oBAAT;AACP,aAHD,MAGK;AACD,oBAAII,WAASV,SAASQ,WAAT,GAAqB,CAAlC;AACIJ,4BAAU,EAAV;AACAE,2BAAS,WAASI,QAAT,GAAkB,YAAlB,GAA+BV,SAASW,WAAjD;AACP;AACD;AACA,gBAAGX,SAASQ,WAAT,KAAuB,CAA1B,EAA4B;AACpBH,2BAAS,UAAT;AACAE,0BAAQ,oBAAR;AACP,aAHD,MAGK;AACD,oBAAIK,UAAQZ,SAASQ,WAAT,GAAqB,CAAjC;AACIH,2BAAS,EAAT;AACAE,0BAAQ,WAASK,OAAT,GAAiB,YAAjB,GAA8BZ,SAASW,WAA/C;AACP;;AAED;AACA,gBAAIE,YAAW,CAAf;AAAA,gBAAiBC,UAAQ,CAAzB;AAAA,gBAA2BC,gBAA3B;AAAA,gBAAmCC,UAAQhB,SAASQ,WAApD;AACA,gBAAGQ,WAASF,UAAQ,CAAR,GAAU,CAAtB,EAAwB;AACpBD,4BAAU,CAAV;AACAE,0BAAQD,OAAR;AACH,aAHD,MAGK;AACDD,4BAAUG,UAAUF,UAAU,CAA9B;AACAC,0BAAUC,UAAUF,UAAU,CAApB,GAAwB,CAAlC;AACH;AACD,gBAAIC,UAAUf,SAASS,UAAvB,EAAmC;AAC/BM,0BAAUf,SAASS,UAAnB;AACH;AACD,gBAAIM,WAAWD,OAAf,EAAwB;AACpBD,4BAAW,CAAX;AACH;;AAED;AACA,mBAAM;AACF,6BAAYA,SADV;AAEF,2BAAUE,OAFR;AAGF,6BAAYX,SAHV;AAIF,4BAAWC,QAJT;AAKF,4BAAWC,QALT;AAMF,2BAAUC,OANR;AAOF,yBAAQP,SAASiB,KAPf;AAQF,8BAAajB,SAASS,UARpB;AASF,+BAAcT,SAASW,WATrB;AAUF,+BAAcX,SAASQ;AAVrB,aAAN;AAYH;AACJ,K;;;EA5EwBU,MAAMC,OAAN,CAAcC,I",
+    "file": "..\\..\\..\\..\\src\\common\\adapter\\template\\page.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * base adapter\n */\nexport default class extends think.adapter.base {\n  /**\n   * init\n   * @return {[]}         []\n   */\n\n    // let userList=await this.model(\"user\").page(this.get(\"page\"), this.get(\"pagesize\")).select();\n    // let result = await this.model(\"user\").page(this.get('page'),this.get('pagesize')).countSelect();\n    // let Page=think.adapter(\"template\", \"page\");\n    // let page = new Page(this.http);\n    // let pageData=page.pagination(result);\n    // this.assign(\"nameList\",userList);\n    // this.assign('pageData',pageData);\n    init(http){\n        super.init(http);\n        this.http = http;\n    }\n    pagination(pageData,pageNumber){\n        let page='';\n        if(pageNumber){\n          page=pageNumber\n        }else {\n          page=this.http.get(\"page\")||1\n        }\n        let nextclass='',preclass='',nextlink='',prelink='';\n        if(page){\n\n            //下一页判断\n            if(pageData.currentPage===pageData.totalPages){\n                    nextclass='disabled';\n                    nextlink='javascript:void(0)';\n            }else{\n                var nextpage=pageData.currentPage+1;\n                    nextclass='';\n                    nextlink='?page='+nextpage+'&pagesize='+pageData.numsPerPage;\n            }\n            //上一页判断\n            if(pageData.currentPage===1){\n                    preclass='disabled';\n                    prelink='javascript:void(0)';\n            }else{\n                var prepage=pageData.currentPage-1;\n                    preclass='';\n                    prelink='?page='+prepage+'&pagesize='+pageData.numsPerPage;\n            }\n\n            //很多页时的显示\n            let pageStart= 1,pageNum=6,pageEnd,pageNow=pageData.currentPage;\n            if(pageNow<=pageNum/2+1){\n                pageStart=1;\n                pageEnd=pageNum;\n            }else{\n                pageStart=pageNow - pageNum / 2;\n                pageEnd = pageNow + pageNum / 2 - 1;\n            }\n            if (pageEnd > pageData.totalPages) {\n                pageEnd = pageData.totalPages;\n            }\n            if (pageEnd <= pageNum) {\n                pageStart= 1;\n            }\n\n            //返回数据\n            return{\n                \"pageStart\":pageStart,\n                \"pageEnd\":pageEnd,\n                \"nextclass\":nextclass,\n                \"preclass\":preclass,\n                \"nextlink\":nextlink,\n                \"prelink\":prelink,\n                \"count\":pageData.count,\n                \"totalPages\":pageData.totalPages,\n                \"numsPerPage\":pageData.numsPerPage,\n                \"currentPage\":pageData.currentPage\n            }\n        }\n    }\n}\n"
+    ]
+}

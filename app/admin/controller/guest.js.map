@@ -1,0 +1,40 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\guest.js"
+    ],
+    "names": [
+        "init",
+        "mydb",
+        "title",
+        "edit",
+        "add",
+        "action",
+        "indexAction",
+        "info",
+        "db",
+        "page",
+        "get",
+        "pagesize",
+        "model",
+        "getIndex",
+        "mydata",
+        "assign",
+        "itemList",
+        "pageData",
+        "display",
+        "delsomeAction",
+        "arr",
+        "post",
+        "where",
+        "id",
+        "deleteRecord",
+        "rs",
+        "success"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAQA;;;;;;AAPA,IAAIA,OAAK;AACLC,QAAK,OADA;AAELC,SAAM,MAFD;AAGLC,QAAK,MAHA;AAILC,OAAI,MAJC;AAKLC,UAAO;AALF,CAAT;;;;;;;;;;AASE;;;;mBAIUC,W;;;;;;;AACEC,kB,GAAK;AACPC,oBAAGR,KAAKC,IADD;AAEPQ,sBAAK,KAAKC,GAAL,CAAS,MAAT,KAAkB,CAFhB;AAGPC,0BAAS,KAAKD,GAAL,CAAS,UAAT,KAAsB;AAHxB,e;;qBAKQ,KAAKE,KAAL,CAAW,MAAX,EAAmBC,QAAnB,CAA4BN,IAA5B,C;;;AAAbO,oB;;AACJ,mBAAKC,MAAL,CAAY,UAAZ,EAAuBD,OAAOE,QAA9B;AACA,mBAAKD,MAAL,CAAY,UAAZ,EAAuBD,OAAOG,QAA9B;AACA,mBAAKF,MAAL,CAAY,OAAZ,EAAoBf,KAAKE,KAAzB;AACA,mBAAKa,MAAL,CAAY,QAAZ,EAAqBf,KAAKK,MAA1B;+CACO,KAAKa,OAAL,E;;;;;;;;;;;;;;;;AAEb;;;mBACMC,a;;;;;;;AACIZ,kB,GAAK;AACPC,oBAAGR,KAAKC,IADD;AAEPmB,qBAAI,KAAKC,IAAL,CAAU,UAAV;AAFG,e;AAILC,mB,GAAM,EAACC,IAAI,CAAC,IAAD,EAAOhB,KAAKa,GAAZ,CAAL,E;;qBACG,KAAKR,KAAL,CAAW,OAAX,EAAoBY,YAApB,CAAiCjB,KAAKC,EAAtC,EAAyCc,KAAzC,C;;;AAATG,gB;;mBACDA,E;;;;;gDAAW,KAAKC,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\guest.js",
+    "sourcesContent": [
+        "'use strict';\nlet init={\n    mydb:\"guest\",\n    title:\"留言管理\",\n    edit:\"留言编辑\",\n    add:\"留言添加\",\n    action:\"guest\"\n}\nimport Base from './base.js';\nexport default class extends Base {\n  /**\n   * index action\n   * @return {Promise} []\n   */\n      async indexAction(){\n          let info={\n            db:init.mydb,\n            page:this.get(\"page\")||1,\n            pagesize:this.get(\"pagesize\")||10\n          }\n          let mydata=await this.model('util').getIndex(info);\n          this.assign(\"itemList\",mydata.itemList);\n          this.assign('pageData',mydata.pageData);\n          this.assign(\"title\",init.title);\n          this.assign(\"action\",init.action);\n          return this.display();\n      }\n    //删除或批量删除接口\n    async delsomeAction(){\n          let info={\n            db:init.mydb,\n            arr:this.post('delarr[]')\n          }\n          let where={id: [\"IN\", info.arr]};\n          let rs=await this.model(\"admin\").deleteRecord(info.db,where);\n          if(rs) return this.success();\n    }\n\n}\n"
+    ]
+}

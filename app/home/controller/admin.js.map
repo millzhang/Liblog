@@ -1,0 +1,36 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\controller\\admin.js"
+    ],
+    "names": [
+        "loginAction",
+        "assign",
+        "displayView",
+        "redirectAction",
+        "dologinAction",
+        "data",
+        "post",
+        "think",
+        "md5",
+        "password",
+        "md5Pas",
+        "username",
+        "uname",
+        "model",
+        "findOne",
+        "name",
+        "role",
+        "result",
+        "info",
+        "session",
+        "json",
+        "status",
+        "msg"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;AAGE;;;;uBAIMA,W;;;;;;;AAEF,+CAAKC,MAAL,CAAY,OAAZ,EAAoB,OAApB;2EACO,KAAKC,WAAL,CAAiB,aAAjB,C;;;;;;;;;;;;;;;;;uBAELC,c;;;;;;4EACK,KAAKD,WAAL,CAAiB,gBAAjB,C;;;;;;;;;;;;;;;;;uBAELE,a;;;;;;;AACIC,8C,GAAK,KAAKC,IAAL,E;;iDACUC,MAAMC,GAAN,CAAUH,KAAKI,QAAf,C;;;AAAfC,gD;;iDACcL,KAAKM,Q;;;AAAnBC,+C;;iDACa,KAAKC,KAAL,CAAW,MAAX,EAAmBC,OAAnB,CAA2B,MAA3B,EAAkC,EAACC,MAAKH,KAAN,EAAYI,MAAK,EAAC,KAAI,CAAL,EAAjB,EAAlC,C;;;AAAbC,gD;AACAC,8C,GAAK;AACHH,sDAAMH,KADH;AAEHH,0DAAUC;AAFP,2C;;gDAINE,UAAQK,OAAOF,IAAf,IAAqBL,WAASO,OAAOR,Q;;;;;;iDAC5B,KAAKU,OAAL,CAAa,UAAb,EAAyBD,IAAzB,C;;;4EACC,KAAKE,IAAL,CAAU,EAACC,QAAO,CAAR,EAAUC,KAAI,OAAd,EAAV,C;;;4EAEF,KAAKF,IAAL,CAAU,EAACC,QAAO,CAAR,EAAUC,KAAI,WAAd,EAAV,C",
+    "file": "..\\..\\..\\src\\home\\controller\\admin.js",
+    "sourcesContent": [
+        "'use strict';\r\n\r\nimport Base from './base.js';\r\n\r\nexport default class extends Base {\r\n  /**\r\n   * index action\r\n   * @return {Promise} []\r\n   */\r\n  async loginAction(){\r\n\r\n      this.assign(\"title\",\"管理员登录\")\r\n      return this.displayView('admin_login');\r\n  }\r\n  async redirectAction(){\r\n      return this.displayView('admin_redirect');\r\n  }\r\n  async dologinAction(){\r\n        let data=this.post();\r\n        let md5Pas = await think.md5(data.password);\r\n        let uname = await data.username;\r\n        let result=await this.model(\"home\").findOne(\"user\",{name:uname,role:{\"<\":4}});\r\n        let info={\r\n              name: uname,\r\n              password: md5Pas\r\n        }\r\n        if(uname===result.name&&md5Pas===result.password){\r\n              await this.session(\"userInfo\", info);\r\n              return this.json({status:1,msg:\"登录成功!\"});\r\n        }else{\r\n            return this.json({status:0,msg:\"用户名或密码错误!\"});\r\n        }\r\n  }\r\n\r\n}\r\n"
+    ]
+}

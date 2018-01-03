@@ -1,0 +1,45 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\model\\util.js"
+    ],
+    "names": [
+        "getIndex",
+        "info",
+        "where",
+        "model",
+        "db",
+        "page",
+        "pagesize",
+        "select",
+        "itemList",
+        "countSelect",
+        "result",
+        "Page",
+        "think",
+        "adapter",
+        "pageData",
+        "pagination",
+        "getList",
+        "flag",
+        "getItem",
+        "title",
+        "item",
+        "id",
+        "edit",
+        "find",
+        "add",
+        "doSave",
+        "status",
+        "isEmpty",
+        "update",
+        "data",
+        "rs",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;qBAGUA,Q;6GAASC,I,EAAMC,K;;;;;;;mCAEI,KAAKC,KAAL,CAAWF,KAAKG,EAAhB,EAAoBF,KAApB,CAA0BA,KAA1B,EAAiCG,IAAjC,CAAsCJ,KAAKI,IAA3C,EAAiDJ,KAAKK,QAAtD,EAAgEC,MAAhE,E;;;AAAjBC,oC;;mCACe,KAAKL,KAAL,CAAWF,KAAKG,EAAhB,EAAoBC,IAApB,CAAyBJ,KAAKI,IAA9B,EAAoCJ,KAAKK,QAAzC,EAAmDG,WAAnD,E;;;AAAfC,kC;AACAC,gC,GAAOC,MAAMC,OAAN,CAAc,UAAd,EAA0B,MAA1B,C;AACPR,gC,GAAO,IAAIM,IAAJ,E;AACPG,oC,GAAWT,KAAKU,UAAL,CAAgBL,MAAhB,EAAwBT,KAAKI,IAA7B,C;6DAER;AACHG,0CAAUA,QADP;AAEHM,0CAAUA;AAFP,6B;;;;;;;;;;;;;;;;;qBAKLE,O;+GAAQf,I;;;;;;;mCAEW,KAAKE,KAAL,CAAWF,KAAKG,EAAhB,EAAoBF,KAApB,CAA0B;AAC3Ce,sCAAM;AADqC,6BAA1B,EAElBZ,IAFkB,CAEbJ,KAAKI,IAFQ,EAEFJ,KAAKK,QAFH,EAEaC,MAFb,E;;;AAAjBC,oC;;mCAGe,KAAKL,KAAL,CAAWF,KAAKG,EAAhB,EAAoBC,IAApB,CAAyBJ,KAAKI,IAA9B,EAAoCJ,KAAKK,QAAzC,EAAmDG,WAAnD,E;;;AAAfC,kC;AACAC,gC,GAAOC,MAAMC,OAAN,CAAc,UAAd,EAA0B,MAA1B,C;AACPR,gC,GAAO,IAAIM,IAAJ,E;AACPG,oC,GAAWT,KAAKU,UAAL,CAAgBL,MAAhB,EAAwBT,KAAKI,IAA7B,C;8DAER;AACHG,0CAAUA,QADP;AAEHM,0CAAUA;AAFP,6B;;;;;;;;;;;;;;;;;qBAKLI,O;+GAAQjB,I;;;;;;AACNkB,iC,GAAQ,E,EACRC,I,GAAO,E;;iCACPnB,KAAKoB,E;;;;;AACLF,oCAAQlB,KAAKqB,IAAb;;mCACa,KAAKnB,KAAL,CAAWF,KAAKG,EAAhB,EAAoBF,KAApB,CAA0B,EAAEmB,IAAIpB,KAAKoB,EAAX,EAA1B,EAA2CE,IAA3C,E;;;AAAbH,gC;;;;;AAEAD,oCAAQlB,KAAKuB,GAAb;AACAJ,mCAAO,EAAP;;;8DAEG;AACHD,uCAAOA,KADJ;AAEHC,sCAAMA;AAFH,6B;;;;;;;;;;;;;;;;;qBAKLK,M;+GAAOxB,I;;;;;;;AACLyB,kC,GAAS,C;;gCACRd,MAAMe,OAAN,CAAc1B,KAAKoB,EAAnB,C;;;;;;mCACc,KAAKlB,KAAL,CAAWF,KAAKG,EAAhB,EAAoBF,KAApB,CAA0B,EAAEmB,IAAIpB,KAAKoB,EAAX,EAA1B,EAA2CO,MAA3C,CAAkD3B,KAAK4B,IAAvD,C;;;AAAXC,8B;;AACJ,gCAAIA,EAAJ,EAAQJ,SAAS,CAAT;;;;;;mCAEO,KAAKvB,KAAL,CAAWF,KAAKG,EAAhB,EAAoBoB,GAApB,CAAwBvB,KAAK4B,IAA7B,C;;;AAAXC,+B;;AACJ,gCAAIA,GAAJ,EAAQJ,SAAS,CAAT;;;8DAEL;AACHA,wCAAQA;AADL,6B;;;;;;;;;;;;;;;;;;EAtDcd,MAAMT,KAAN,CAAY4B,I",
+    "file": "..\\..\\..\\src\\admin\\model\\util.js",
+    "sourcesContent": [
+        "'use strict';\nexport default class extends think.model.base {\n\n    async getIndex(info, where) {\n\n        let itemList = await this.model(info.db).where(where).page(info.page, info.pagesize).select();\n        let result = await this.model(info.db).page(info.page, info.pagesize).countSelect();\n        let Page = think.adapter(\"template\", \"page\");\n        let page = new Page();\n        let pageData = page.pagination(result, info.page);\n\n        return {\n            itemList: itemList,\n            pageData: pageData\n        };\n    }\n    async getList(info) {\n\n        let itemList = await this.model(info.db).where({\n            flag: 1\n        }).page(info.page, info.pagesize).select();\n        let result = await this.model(info.db).page(info.page, info.pagesize).countSelect();\n        let Page = think.adapter(\"template\", \"page\");\n        let page = new Page();\n        let pageData = page.pagination(result, info.page);\n\n        return {\n            itemList: itemList,\n            pageData: pageData\n        };\n    }\n    async getItem(info) {\n        let title = \"\",\n            item = {};\n        if (info.id) {\n            title = info.edit;\n            item = await this.model(info.db).where({ id: info.id }).find();\n        } else {\n            title = info.add;\n            item = {}\n        }\n        return {\n            title: title,\n            item: item\n        }\n    }\n    async doSave(info) {\n        let status = 0\n        if (!think.isEmpty(info.id)) {\n            let rs = await this.model(info.db).where({ id: info.id }).update(info.data);\n            if (rs) status = 1;\n        } else {\n            let rs = await this.model(info.db).add(info.data);\n            if (rs) status = 1;\n        }\n        return {\n            status: status\n        }\n    }\n}"
+    ]
+}

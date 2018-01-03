@@ -1,0 +1,29 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\doc\\controller\\index.js"
+    ],
+    "names": [
+        "indexAction",
+        "displayView",
+        "thinkjs2Action",
+        "get",
+        "aid",
+        "model",
+        "getOneArticle",
+        "id",
+        "tag",
+        "articleInfo",
+        "ispublished",
+        "assign",
+        "angularAction",
+        "thinkjsAction",
+        "liblogAction",
+        "reactAction"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;AAGE;;;;qBAIAA,W,0BAAa;AACX;AACA,eAAO,KAAKC,WAAL,CAAiB,aAAjB,CAAP;AAED,K;AACD;;;qBACMC,c;;;;;;;;mCACa,KAAKC,GAAL,CAAS,KAAT,C;;;AAAXC,+B;;mCACkB,KAAKC,KAAL,CAAW,KAAX,EAAkBC,aAAlB,CAAgC,SAAhC,EAA0C,EAACC,IAAGH,GAAJ,EAAQI,KAAI,EAAZ,EAA1C,C;;;AAAlBC,uC;;kCACDA,YAAYC,WAAZ,KAA0B,C;;;;;AACzB,iCAAKC,MAAL,CAAY,aAAZ,EAA0BF,WAA1B;6DACO,KAAKR,WAAL,CAAiB,gBAAjB,C;;;6DAEA,KAAKA,WAAL,CAAiB,qBAAjB,C;;;;;;;;;;;;;;;;AAGf;;;qBACMW,a;;;;;;;;mCACa,KAAKT,GAAL,CAAS,KAAT,C;;;AAAXC,+B;;mCACkB,KAAKC,KAAL,CAAW,KAAX,EAAkBC,aAAlB,CAAgC,SAAhC,EAA0C,EAACC,IAAGH,GAAJ,EAAQI,KAAI,EAAZ,EAA1C,C;;;AAAlBC,uC;;kCACDA,YAAYC,WAAZ,KAA0B,C;;;;;AACzB,iCAAKC,MAAL,CAAY,aAAZ,EAA0BF,WAA1B;8DACO,KAAKR,WAAL,CAAiB,eAAjB,C;;;8DAEA,KAAKA,WAAL,CAAiB,qBAAjB,C;;;;;;;;;;;;;;;;AAGf;;;qBACMY,a;;;;;;;;mCACa,KAAKV,GAAL,CAAS,KAAT,C;;;AAAXC,+B;;mCACkB,KAAKC,KAAL,CAAW,KAAX,EAAkBC,aAAlB,CAAgC,SAAhC,EAA0C,EAACC,IAAGH,GAAJ,EAA1C,C;;;AAAlBK,uC;;kCACDA,YAAYC,WAAZ,KAA0B,C;;;;;AACzB,iCAAKC,MAAL,CAAY,aAAZ,EAA0BF,WAA1B;8DACO,KAAKR,WAAL,CAAiB,eAAjB,C;;;8DAEA,KAAKA,WAAL,CAAiB,qBAAjB,C;;;;;;;;;;;;;;;;AAGf;;;qBACMa,Y;;;;;;;;mCACa,KAAKX,GAAL,CAAS,KAAT,C;;;AAAXC,+B;;mCACkB,KAAKC,KAAL,CAAW,KAAX,EAAkBC,aAAlB,CAAgC,SAAhC,EAA0C,EAACC,IAAGH,GAAJ,EAA1C,C;;;AAAlBK,uC;;kCACDA,YAAYC,WAAZ,KAA0B,C;;;;;AACzB,iCAAKC,MAAL,CAAY,aAAZ,EAA0BF,WAA1B;8DACO,KAAKR,WAAL,CAAiB,cAAjB,C;;;8DAGA,KAAKA,WAAL,CAAiB,qBAAjB,C;;;;;;;;;;;;;;;;AAGf;;;qBACMc,W;;;;;;;;mCACa,KAAKZ,GAAL,CAAS,KAAT,C;;;AAAXC,+B;;mCACkB,KAAKC,KAAL,CAAW,KAAX,EAAkBC,aAAlB,CAAgC,SAAhC,EAA0C,EAACC,IAAGH,GAAJ,EAAQI,KAAI,EAAZ,EAA1C,C;;;AAAlBC,uC;;kCACDA,YAAYC,WAAZ,KAA0B,C;;;;;AACzB,iCAAKC,MAAL,CAAY,aAAZ,EAA0BF,WAA1B;8DACO,KAAKR,WAAL,CAAiB,aAAjB,C;;;8DAEA,KAAKA,WAAL,CAAiB,qBAAjB,C",
+    "file": "..\\..\\..\\src\\doc\\controller\\index.js",
+    "sourcesContent": [
+        "'use strict';\r\n\r\nimport Base from './base.js';\r\n\r\nexport default class extends Base {\r\n  /**\r\n   * index action\r\n   * @return {Promise} []\r\n   */\r\n  indexAction(){\r\n    //auto render template file index_index.html\r\n    return this.displayView(\"index_index\");\r\n\r\n  }\r\n  //thinkjs文档\r\n  async thinkjs2Action(){\r\n      let aid= await this.get(\"aid\");\r\n      let articleInfo=await this.model('doc').getOneArticle('article',{id:aid,tag:18});\r\n      if(articleInfo.ispublished===1){\r\n          this.assign('articleInfo',articleInfo);\r\n          return this.displayView(\"index_thinkjs2\");\r\n      }else{\r\n          return this.displayView(\"../common/error_404\");\r\n      }\r\n  }\r\n  //angularjs文档\r\n  async angularAction(){\r\n      let aid= await this.get(\"aid\");\r\n      let articleInfo=await this.model('doc').getOneArticle('article',{id:aid,tag:19});\r\n      if(articleInfo.ispublished===1){\r\n          this.assign('articleInfo',articleInfo);\r\n          return this.displayView(\"index_angular\");\r\n      }else{\r\n          return this.displayView(\"../common/error_404\");\r\n      }\r\n  }\r\n  //thinkjs教程\r\n  async thinkjsAction(){\r\n      let aid= await this.get(\"aid\");\r\n      let articleInfo=await this.model('doc').getOneArticle('article',{id:aid});\r\n      if(articleInfo.ispublished===1){\r\n          this.assign('articleInfo',articleInfo);\r\n          return this.displayView(\"index_thinkjs\");\r\n      }else{\r\n          return this.displayView(\"../common/error_404\");\r\n      }\r\n  }\r\n  // liblog教程\r\n  async liblogAction(){\r\n      let aid= await this.get(\"aid\");\r\n      let articleInfo=await this.model('doc').getOneArticle('article',{id:aid});\r\n      if(articleInfo.ispublished===1){\r\n          this.assign('articleInfo',articleInfo);\r\n          return this.displayView(\"index_liblog\");\r\n\r\n      }else{\r\n          return this.displayView(\"../common/error_404\");\r\n      }\r\n  }\r\n  // React教程\r\n  async reactAction(){\r\n      let aid= await this.get(\"aid\");\r\n      let articleInfo=await this.model('doc').getOneArticle('article',{id:aid,tag:20});\r\n      if(articleInfo.ispublished===1){\r\n          this.assign('articleInfo',articleInfo);\r\n          return this.displayView(\"index_react\");\r\n      }else{\r\n          return this.displayView(\"../common/error_404\");\r\n      }\r\n  }\r\n  Î\r\n}\r\n"
+    ]
+}

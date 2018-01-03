@@ -1,0 +1,48 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\topic.js"
+    ],
+    "names": [
+        "init",
+        "mydb",
+        "title",
+        "edit",
+        "add",
+        "action",
+        "indexAction",
+        "info",
+        "db",
+        "page",
+        "get",
+        "pagesize",
+        "model",
+        "getTopicListJoinRecord",
+        "topicList",
+        "countSelect",
+        "result",
+        "Page",
+        "think",
+        "adapter",
+        "pageData",
+        "pagination",
+        "assign",
+        "display",
+        "updateAction",
+        "newData",
+        "post",
+        "rs",
+        "where",
+        "id",
+        "update",
+        "success",
+        "delsomeAction",
+        "arr",
+        "deleteRecord"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAQA;;;;;;AAPA,IAAIA,OAAK;AACLC,UAAK,OADA;AAELC,WAAM,MAFD;AAGLC,UAAK,EAHA;AAILC,SAAI,EAJC;AAKLC,YAAO;AALF,CAAT;;;;;;;;;;AASE;;;;;qBAKUC,W;;;;;;;AACEC,gC,GAAK;AACPC,oCAAGR,KAAKC,IADD;AAEPQ,sCAAK,KAAKC,GAAL,CAAS,MAAT,KAAkB,CAFhB;AAGPC,0CAAS,KAAKD,GAAL,CAAS,UAAT,KAAsB;AAHxB,6B;;mCAKa,KAAKE,KAAL,CAAW,OAAX,EAAoBC,sBAApB,CAA2CN,KAAKE,IAAhD,EAAqDF,KAAKI,QAA1D,C;;;AAAlBG,qC;;mCACe,KAAKF,KAAL,CAAWL,KAAKC,EAAhB,EAAoBC,IAApB,CAAyBF,KAAKE,IAA9B,EAAmCF,KAAKI,QAAxC,EAAkDI,WAAlD,E;;;AAAfC,kC;AACAC,gC,GAAKC,MAAMC,OAAN,CAAc,UAAd,EAA0B,MAA1B,C;AACLV,gC,GAAO,IAAIQ,IAAJ,E;AACPG,oC,GAASX,KAAKY,UAAL,CAAgBL,MAAhB,EAAuBT,KAAKE,IAA5B,C;;AACb,iCAAKa,MAAL,CAAY,WAAZ,EAAwBR,SAAxB;AACA,iCAAKQ,MAAL,CAAY,UAAZ,EAAuBF,QAAvB;AACA,iCAAKE,MAAL,CAAY,OAAZ,EAAoBtB,KAAKE,KAAzB;AACA,iCAAKoB,MAAL,CAAY,QAAZ,EAAqBtB,KAAKK,MAA1B;AACA,iCAAKiB,MAAL,CAAY,MAAZ,EAAmBf,IAAnB;6DACO,KAAKgB,OAAL,E;;;;;;;;;;;;;;;;;AAGZ;;;qBACMC,Y;;;;;;;AACGC,mC,GAAQ,KAAKC,IAAL,E;AACRC,8B,GAAG,KAAKf,KAAL,CAAW,OAAX,EAAoBgB,KAApB,CAA0B,EAACC,IAAG,KAAKH,IAAL,CAAU,IAAV,CAAJ,EAA1B,EAAgDI,MAAhD,CAAuDL,OAAvD,C;;iCACJE,E;;;;;8DAAW,KAAKI,OAAL,E;;;;;;;;;;;;;;;;;AAGpB;;;qBACMC,a;;;;;;;AACIzB,gC,GAAK;AACPC,oCAAGR,KAAKC,IADD;AAEPgC,qCAAI,KAAKP,IAAL,CAAU,UAAV;AAFG,6B;AAILE,iC,GAAM,EAACC,IAAI,CAAC,IAAD,EAAOtB,KAAK0B,GAAZ,CAAL,E;;mCACG,KAAKrB,KAAL,CAAW,OAAX,EAAoBsB,YAApB,CAAiC3B,KAAKC,EAAtC,EAAyCoB,KAAzC,C;;;AAATD,8B;;iCACDA,E;;;;;8DAAW,KAAKI,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\topic.js",
+    "sourcesContent": [
+        "'use strict';\nlet init={\n    mydb:\"topic\",\n    title:\"社区管理\",\n    edit:\"\",\n    add:\"\",\n    action:\"topic\"\n}\nimport Base from './base.js';\nexport default class extends Base {\n  /**\n   * index action\n   * @return {Promise} []\n   */\n\n      async indexAction(){\n          let info={\n            db:init.mydb,\n            page:this.get(\"page\")||1,\n            pagesize:this.get(\"pagesize\")||10\n          }\n          let topicList = await this.model('admin').getTopicListJoinRecord(info.page,info.pagesize);\n          let result = await this.model(info.db).page(info.page,info.pagesize).countSelect();\n          let Page=think.adapter(\"template\", \"page\");\n          let page = new Page();\n          let pageData=page.pagination(result,info.page);\n          this.assign(\"topicList\",topicList);\n          this.assign('pageData',pageData);\n          this.assign(\"title\",init.title);\n          this.assign(\"action\",init.action);\n          this.assign(\"info\",info);\n          return this.display();\n      }\n\n     //更新接口\n     async updateAction() {\n          let newData=this.post();\n          let rs=this.model(\"topic\").where({id:this.post(\"id\")}).update(newData);\n          if(rs) return this.success();\n    }\n\n    //删除或批量删除接口\n    async delsomeAction(){\n          let info={\n            db:init.mydb,\n            arr:this.post('delarr[]')\n          }\n          let where={id: [\"IN\", info.arr]};\n          let rs=await this.model(\"admin\").deleteRecord(info.db,where);\n          if(rs) return this.success();\n    }\n\n}\n"
+    ]
+}

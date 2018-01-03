@@ -1,0 +1,44 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\personal\\controller\\base.js"
+    ],
+    "names": [
+        "__before",
+        "getConfig",
+        "_web",
+        "assign",
+        "session",
+        "csrf",
+        "uinfo",
+        "islogin",
+        "think",
+        "isEmpty",
+        "model",
+        "findAll",
+        "name",
+        "logininfo",
+        "getOrderList",
+        "appear",
+        "navList",
+        "THEME_VIEW_PATH",
+        "THEME_PATH",
+        "sep",
+        "theme",
+        "Modules_Src",
+        "http",
+        "module",
+        "findOne",
+        "id",
+        "sysdata",
+        "displayView",
+        "display",
+        "controller",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGI;;;qBAGMA,Q;;;;;;;;;mCAGe,KAAKC,SAAL,E;;;AAAbC,gC;;AACJ,iCAAKC,MAAL,CAAY,MAAZ,EAAoBD,IAApB;;AAEA;;mCACiB,KAAKE,OAAL,CAAa,UAAb,C;;;AAAbC,gC;;AACJ,iCAAKF,MAAL,CAAY,MAAZ,EAAoBE,IAApB;;AAEA;;mCACkB,KAAKD,OAAL,CAAa,OAAb,C;;;AAAdE,iC;AACAC,mC,GAAW,CAACC,MAAMC,OAAN,CAAcH,KAAd,CAAF,GAA0B,CAA1B,GAA8B,C;;AAC5C,iCAAKH,MAAL,CAAY,SAAZ,EAAuBI,OAAvB;;gCACKC,MAAMC,OAAN,CAAcH,KAAd,C;;;;;;mCACqB,KAAKI,KAAL,CAAW,UAAX,EAAuBC,OAAvB,CAA+B,MAA/B,EAAuC,EAAEC,MAAMN,MAAMM,IAAd,EAAvC,C;;;AAAlBC,qC;;AACJ;AACA,iCAAKV,MAAL,CAAY,WAAZ,EAAyBU,UAAU,CAAV,CAAzB;;;;mCAKgB,KAAKH,KAAL,CAAW,UAAX,EAAuBI,YAAvB,CAAoC,MAApC,EAA4C,EAAEC,QAAQ,CAAV,EAA5C,C;;;AAAhBC,mC;;AACJ,iCAAKb,MAAL,CAAY,SAAZ,EAAuBa,OAAvB;;AAEA;AACA,iCAAKC,eAAL,QAA0BT,MAAMU,UAAhC,GAA6CV,MAAMW,GAAnD,GAAyDjB,KAAKkB,KAA9D,GAAsEZ,MAAMW,GAA5E,GAAkFX,MAAMa,WAAxF,GAAsGb,MAAMW,GAA5G,GAAkH,KAAKG,IAAL,CAAUC,MAA5H,GAAqIf,MAAMW,GAA3I;AACA,iCAAKhB,MAAL,CAAY,WAAZ,EAAyB,kBAAkBD,KAAKkB,KAAvB,GAA+B,MAAxD;;;;;;;;;;;;;;;;;qBAGEnB,S;;;;;;;;mCACkB,KAAKS,KAAL,CAAW,UAAX,EAAuBc,OAAvB,CAA+B,QAA/B,EAAyC,EAAEC,IAAI,CAAN,EAAzC,C;;;AAAhBC,mC;;AACJ,iCAAKvB,MAAL,CAAY,MAAZ,EAAoBuB,OAApB;8DACOA,O;;;;;;;;;;;;;;;;;AAGX;;;qBACMC,W;+GAAYf,I;;;;;8DACP,KAAKgB,OAAL,CAAa,KAAKX,eAAL,GAAuBL,IAAvB,GAA8B,OAA3C,C;;;;;;;;;;;;;;;;;;EA1CcJ,MAAMqB,UAAN,CAAiBC,I",
+    "file": "..\\..\\..\\src\\personal\\controller\\base.js",
+    "sourcesContent": [
+        "'use strict';\r\n\r\nexport default class extends think.controller.base {\r\n    /**\r\n     * some base method in here\r\n     */\r\n    async __before() {\r\n\r\n        // assign后台设置\r\n        let _web = await this.getConfig();\r\n        this.assign('_web', _web);\r\n\r\n        //设置CSRF值\r\n        let csrf = await this.session(\"__CSRF__\");\r\n        this.assign(\"csrf\", csrf);\r\n\r\n        // 是否登录\r\n        let uinfo = await this.session('uInfo');\r\n        let islogin = (!think.isEmpty(uinfo)) ? 1 : 0;\r\n        this.assign(\"islogin\", islogin);\r\n        if (!think.isEmpty(uinfo)) {\r\n            let logininfo = await this.model('personal').findAll('user', { name: uinfo.name });\r\n            //自己的个人中心基本信息\r\n            this.assign(\"logininfo\", logininfo[0]);\r\n        }\r\n        //是否登录\r\n\r\n        //获取导航链接\r\n        let navList = await this.model('personal').getOrderList('menu', { appear: 1 });\r\n        this.assign(\"navList\", navList);\r\n\r\n        // 设置主题地址\r\n        this.THEME_VIEW_PATH = `${think.THEME_PATH}${think.sep}${_web.theme}${think.sep}${think.Modules_Src}${think.sep}${this.http.module}${think.sep}`;\r\n        this.assign(\"theme_url\", 'static/theme/' + _web.theme + '/res');\r\n\r\n    }\r\n    async getConfig() {\r\n        let sysdata = await this.model('personal').findOne('system', { id: 1 });\r\n        this.assign('_web', sysdata);\r\n        return sysdata;\r\n    }\r\n\r\n    // 渲染主题view层\r\n    async displayView(name) {\r\n        return this.display(this.THEME_VIEW_PATH + name + '.html');\r\n    }\r\n}"
+    ]
+}

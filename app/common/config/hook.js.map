@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\hook.js"
+    ],
+    "names": [
+        "logic_before"
+    ],
+    "mappings": "AAAA;;AAEA;;;;;;kBAIe;AACXA,gBAAc,CAAC,SAAD,EAAY,MAAZ;AADH,C",
+    "file": "..\\..\\..\\src\\common\\config\\hook.js",
+    "sourcesContent": [
+        "'use strict';\n\n/**\n * hook config\n * https://thinkjs.org/doc/middleware.html#toc-df6\n */\nexport default {\n    logic_before: [\"prepend\", \"csrf\"]\n}"
+    ]
+}

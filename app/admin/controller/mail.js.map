@@ -1,0 +1,41 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\mail.js"
+    ],
+    "names": [
+        "indexAction",
+        "nodemailer",
+        "require",
+        "mailer",
+        "think",
+        "config",
+        "smtpTransport",
+        "createTransport",
+        "host",
+        "secureConnection",
+        "port",
+        "requiresAuth",
+        "domains",
+        "auth",
+        "user",
+        "account",
+        "pass",
+        "sendMail",
+        "from",
+        "to",
+        "subject",
+        "html",
+        "err",
+        "res",
+        "console",
+        "log",
+        "assign",
+        "display"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;qBAKUA,W;;;;;;;;AAEF;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;AAEIC,sC,GAAcC,QAAQ,YAAR,C;AACdC,kC,GAAOC,MAAMC,MAAN,CAAa,MAAb,C;AACPC,yC,GAAgBL,WAAWM,eAAX,CAA2B,MAA3B,EAAmC;AACnDC,sCAAML,OAAOK,IADsC;AAEnDC,kDAAkB,KAFiC;AAGnDC,sCAAMP,OAAOO,IAHsC;AAInDC,8CAAc,IAJqC;AAKnDC,yCAAST,OAAOS,OALmC;AAMnDC,sCAAM;AACFC,0CAAMX,OAAOY,OADX,EACoB;AACtBC,0CAAMb,OAAOa,IAFX,CAEgB;AAFhB;AAN6C,6BAAnC,C;;AAWpBV,0CAAcW,QAAd,CAAuB;AACnBC,sCAAMf,OAAOY,OADM;AAEnBI,oCAAI,kCAFe,EAEqB;AAC5CC,yCAAU,0BAHa;AAInBC,sCAAM;AAJa,6BAAvB,EAKE,UAASC,GAAT,EAAcC,GAAd,EAAmB;AACjBC,wCAAQC,GAAR,CAAYH,GAAZ,EAAiBC,GAAjB;AACH,6BAPD;AAQA,iCAAKG,MAAL,CAAY,OAAZ,EAAoB,MAApB;6DACO,KAAKC,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\mail.js",
+    "sourcesContent": [
+        "'use strict';\n\nimport Base from './base.js';\n\nexport default class extends Base {\n\n\n    async indexAction(){\n\n        //var nodemailer  = require(\"nodemailer\");\n        //var smtpTransport = nodemailer.createTransport(\"SMTP\", {\n        //    service: \"QQ\",\n        //    auth: {\n        //        user: \"262248861@qq.com\", // 账号\n        //        pass: \"wvebvwxcsxpebiai\" // 密码\n        //    }\n        //});\n        //smtpTransport.sendMail({\n        //    from: '262248861@qq.com',\n        //      to: \"390039626@qq.com,livisky@163.com\", // 收件列表\n        //subject : 'Node.JS通过SMTP协议从QQ邮箱发送邮件',\n        //    html: 'This is a test mail,please do not reply it! <br> '\n        //},function(err, res) {\n        //    console.log(err, res);\n        //});\n\n        var nodemailer  = require(\"nodemailer\");\n        let mailer=think.config(\"mail\");\n        var smtpTransport = nodemailer.createTransport(\"SMTP\", {\n            host: mailer.host,\n            secureConnection: false,\n            port: mailer.port,\n            requiresAuth: true,\n            domains: mailer.domains,\n            auth: {\n                user: mailer.account, // 账号\n                pass: mailer.pass // 密码\n            }\n        });\n        smtpTransport.sendMail({\n            from: mailer.account,\n            to: \"390039626@qq.com,livisky@163.com\", // 收件列表\n        subject : 'Node.JS通过SMTP协议从QQ邮箱发送邮件',\n            html: 'have a try!'\n        },function(err, res) {\n            console.log(err, res);\n        });\n        this.assign(\"title\",\"测试邮件\");\n        return this.display();\n    }\n}"
+    ]
+}

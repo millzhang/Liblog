@@ -1,0 +1,47 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\item.js"
+    ],
+    "names": [
+        "init",
+        "mydb",
+        "title",
+        "edit",
+        "add",
+        "action",
+        "indexAction",
+        "info",
+        "db",
+        "page",
+        "get",
+        "pagesize",
+        "model",
+        "getIndex",
+        "mydata",
+        "assign",
+        "itemList",
+        "pageData",
+        "display",
+        "itemAction",
+        "id",
+        "getItem",
+        "item",
+        "saveAction",
+        "data",
+        "post",
+        "doSave",
+        "status",
+        "success",
+        "delsomeAction",
+        "arr",
+        "where",
+        "deleteRecord",
+        "rs"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAQA;;;;;;AAPA,IAAIA,OAAO;AACPC,UAAM,MADC;AAEPC,WAAO,MAFA;AAGPC,UAAM,MAHC;AAIPC,SAAK,MAJE;AAKPC,YAAQ;AALD,CAAX;;;;;;;;;;AASI;;;;qBAIMC,W;;;;;;;AACEC,gC,GAAO;AACPC,oCAAIR,KAAKC,IADF;AAEPQ,sCAAM,KAAKC,GAAL,CAAS,MAAT,KAAoB,CAFnB;AAGPC,0CAAU,KAAKD,GAAL,CAAS,UAAT,KAAwB;AAH3B,6B;;mCAKQ,KAAKE,KAAL,CAAW,MAAX,EAAmBC,QAAnB,CAA4BN,IAA5B,C;;;AAAfO,kC;;AACJ,iCAAKC,MAAL,CAAY,UAAZ,EAAwBD,OAAOE,QAA/B;AACA,iCAAKD,MAAL,CAAY,UAAZ,EAAwBD,OAAOG,QAA/B;AACA,iCAAKF,MAAL,CAAY,OAAZ,EAAqBf,KAAKE,KAA1B;AACA,iCAAKa,MAAL,CAAY,QAAZ,EAAsBf,KAAKK,MAA3B;6DACO,KAAKa,OAAL,E;;;;;;;;;;;;;;;;;qBAGLC,U;;;;;;;AAEEZ,gC,GAAO;AACPC,oCAAIR,KAAKC,IADF;AAEPE,sCAAMH,KAAKG,IAFJ;AAGPC,qCAAKJ,KAAKI,GAHH;AAIPgB,oCAAI,KAAKV,GAAL,CAAS,IAAT;AAJG,6B;;mCAMQ,KAAKE,KAAL,CAAW,MAAX,EAAmBS,OAAnB,CAA2Bd,IAA3B,C;;;AAAfO,kC;;AACJ,iCAAKC,MAAL,CAAY,OAAZ,EAAqBD,OAAOZ,KAA5B;AACA,iCAAKa,MAAL,CAAY,MAAZ,EAAoBD,OAAOQ,IAA3B;AACA,iCAAKP,MAAL,CAAY,QAAZ,EAAsBf,KAAKK,MAA3B;8DACO,KAAKa,OAAL,E;;;;;;;;;;;;;;;;;AAGX;;;qBACMK,U;;;;;;;AACEhB,gC,GAAO;AACPC,oCAAIR,KAAKC,IADF;AAEPuB,sCAAM,KAAKC,IAAL,EAFC;AAGPL,oCAAI,KAAKK,IAAL,CAAU,IAAV;AAHG,6B;;mCAKQ,KAAKb,KAAL,CAAW,MAAX,EAAmBc,MAAnB,CAA0BnB,IAA1B,C;;;AAAfO,kC;;kCACAA,OAAOa,MAAP,KAAkB,C;;;;;8DAAU,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;AAGpC;;;qBACMC,a;;;;;;;AACEtB,gC,GAAO;AACPC,oCAAIR,KAAKC,IADF;AAEP6B,qCAAK,KAAKL,IAAL,CAAU,UAAV;AAFE,6B;AAIPM,iC,GAAQ,EAAEX,IAAI,CAAC,IAAD,EAAOb,KAAKuB,GAAZ,CAAN,E;;mCACG,KAAKlB,KAAL,CAAW,OAAX,EAAoBoB,YAApB,CAAiCzB,KAAKC,EAAtC,EAA0CuB,KAA1C,C;;;AAAXE,8B;;iCACAA,E;;;;;8DAAW,KAAKL,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\item.js",
+    "sourcesContent": [
+        "'use strict';\nlet init = {\n    mydb: \"item\",\n    title: \"分类管理\",\n    edit: \"分类编辑\",\n    add: \"分类添加\",\n    action: \"item\"\n}\nimport Base from './base.js';\nexport default class extends Base {\n    /**\n     * index action\n     * @return {Promise} []\n     */\n    async indexAction() {\n        let info = {\n            db: init.mydb,\n            page: this.get(\"page\") || 1,\n            pagesize: this.get(\"pagesize\") || 10\n        }\n        let mydata = await this.model('util').getIndex(info);\n        this.assign(\"itemList\", mydata.itemList);\n        this.assign('pageData', mydata.pageData);\n        this.assign(\"title\", init.title);\n        this.assign(\"action\", init.action);\n        return this.display();\n    }\n\n    async itemAction() {\n\n        let info = {\n            db: init.mydb,\n            edit: init.edit,\n            add: init.add,\n            id: this.get('id')\n        }\n        let mydata = await this.model('util').getItem(info);\n        this.assign(\"title\", mydata.title);\n        this.assign('item', mydata.item);\n        this.assign(\"action\", init.action);\n        return this.display();\n    }\n\n    //编辑或者新增接口\n    async saveAction() {\n        let info = {\n            db: init.mydb,\n            data: this.post(),\n            id: this.post('id')\n        }\n        let mydata = await this.model('util').doSave(info);\n        if (mydata.status === 1) return this.success();\n    }\n\n    //删除或批量删除接口\n    async delsomeAction() {\n        let info = {\n            db: init.mydb,\n            arr: this.post('delarr[]')\n        }\n        let where = { id: [\"IN\", info.arr] };\n        let rs = await this.model(\"admin\").deleteRecord(info.db, where);\n        if (rs) return this.success();\n    }\n\n}"
+    ]
+}

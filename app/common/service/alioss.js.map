@@ -1,0 +1,43 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\service\\alioss.js"
+    ],
+    "names": [
+        "init",
+        "http",
+        "upload",
+        "imgobj",
+        "co",
+        "require",
+        "OSS",
+        "client",
+        "Wrapper",
+        "region",
+        "think",
+        "config",
+        "accessKeyId",
+        "accessKeySecret",
+        "bucket",
+        "filepath",
+        "path",
+        "basename",
+        "newpath",
+        "liFormatDate",
+        "Date",
+        "toLocaleDateString",
+        "uploadPath",
+        "resolve",
+        "reject",
+        "result",
+        "put",
+        "err",
+        "service",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;AACA;;;;;;;;;;;;;;AAEI;;;;qBAIAA,I,iBAAKC,I,EAAM;AACH,sCAAMD,IAAN,YAAWC,IAAX;AACH,K;AACD;;;qBACJC,M,mBAAOC,M,EAAQ;AACX,YAAIC,KAAKC,QAAQ,IAAR,CAAT;AACA,YAAIC,MAAMD,QAAQ,SAAR,CAAV;AACA,YAAIE,SAAS,IAAID,IAAIE,OAAR,CAAgB;AACzBC,oBAAQC,MAAMC,MAAN,CAAa,YAAb,CADiB;AAEzBC,yBAAaF,MAAMC,MAAN,CAAa,iBAAb,CAFY;AAGzBE,6BAAiBH,MAAMC,MAAN,CAAa,qBAAb,CAHQ;AAIzBG,oBAAQJ,MAAMC,MAAN,CAAa,YAAb;AAJiB,SAAhB,CAAb;AAMA,YAAII,WAAWZ,OAAOa,IAAtB;AACA,YAAIC,WAAW,eAAKA,QAAL,CAAcF,QAAd,CAAf;AACA,YAAIG,UAAUC,aAAa,IAAIC,IAAJ,GAAWC,kBAAX,EAAb,CAAd;AACA,YAAIC,aAAaZ,MAAMC,MAAN,CAAa,aAAb,IAA8BO,OAA9B,GAAwCD,QAAzD;;AAEA,eAAO,sBAAY,UAASM,OAAT,EAAkBC,MAAlB,EAA0B;AACzC,gBAAIC,SAASlB,OAAOmB,GAAP,CAAWJ,UAAX,EAAuBP,QAAvB,CAAb;AACA,gBAAIU,MAAJ,EAAY;AACRF,wBAAQE,MAAR;AACH,aAFD,MAEO;AACHD,uBAAOG,GAAP;AACH;AACJ,SAPM,CAAP;AAQH,K;;;EA/BwBjB,MAAMkB,OAAN,CAAcC,I",
+    "file": "..\\..\\..\\src\\common\\service\\alioss.js",
+    "sourcesContent": [
+        "'use strict';\nimport path from \"path\";\nexport default class extends think.service.base {\n    /**\n     * init\n     * @return {}         []\n     */\n    init(http) {\n            super.init(http);\n        }\n        //初始化\n    upload(imgobj) {\n        var co = require('co');\n        var OSS = require('ali-oss')\n        var client = new OSS.Wrapper({\n            region: think.config('OSS.region'),\n            accessKeyId: think.config('OSS.accessKeyId'),\n            accessKeySecret: think.config('OSS.accessKeySecret'),\n            bucket: think.config('OSS.bucket')\n        });\n        let filepath = imgobj.path;\n        let basename = path.basename(filepath);\n        let newpath = liFormatDate(new Date().toLocaleDateString());\n        let uploadPath = think.config('OSS.img_url') + newpath + basename;\n\n        return new Promise(function(resolve, reject) {\n            let result = client.put(uploadPath, filepath);\n            if (result) {\n                resolve(result);\n            } else {\n                reject(err);\n            }\n        })\n    }\n}"
+    ]
+}

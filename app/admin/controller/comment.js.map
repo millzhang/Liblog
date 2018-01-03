@@ -1,0 +1,42 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\comment.js"
+    ],
+    "names": [
+        "init",
+        "mydb",
+        "title",
+        "action",
+        "indexAction",
+        "info",
+        "db",
+        "page",
+        "get",
+        "pagesize",
+        "model",
+        "getIndex",
+        "mydata",
+        "assign",
+        "itemList",
+        "pageData",
+        "display",
+        "delsomeAction",
+        "arr",
+        "post",
+        "where",
+        "id",
+        "deleteRecord",
+        "rs",
+        "success",
+        "tiplistAction",
+        "findAll",
+        "tipoff",
+        "tiplist"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AAMA;;;;;;AALA,IAAIA,OAAK;AACLC,QAAK,SADA;AAELC,SAAM,MAFD;AAGLC,UAAO;AAHF,CAAT;;;;;;;;;;AAOE;;;;mBAIMC,W;;;;;;;AACEC,kB,GAAK;AACPC,oBAAGN,KAAKC,IADD;AAEPM,sBAAK,KAAKC,GAAL,CAAS,MAAT,KAAkB,CAFhB;AAGPC,0BAAS,KAAKD,GAAL,CAAS,UAAT,KAAsB;AAHxB,e;;qBAKQ,KAAKE,KAAL,CAAW,MAAX,EAAmBC,QAAnB,CAA4BN,IAA5B,C;;;AAAbO,oB;;AACJ,mBAAKC,MAAL,CAAY,UAAZ,EAAuBD,OAAOE,QAA9B;AACA,mBAAKD,MAAL,CAAY,UAAZ,EAAuBD,OAAOG,QAA9B;AACA,mBAAKF,MAAL,CAAY,OAAZ,EAAoBb,KAAKE,KAAzB;AACA,mBAAKW,MAAL,CAAY,QAAZ,EAAqBb,KAAKG,MAA1B;+CACO,KAAKa,OAAL,E;;;;;;;;;;;;;;;;AAEX;;;mBACMC,a;;;;;;;AACIZ,kB,GAAK;AACPC,oBAAGN,KAAKC,IADD;AAEPiB,qBAAI,KAAKC,IAAL,CAAU,UAAV;AAFG,e;AAILC,mB,GAAM,EAACC,IAAI,CAAC,IAAD,EAAOhB,KAAKa,GAAZ,CAAL,E;;qBACG,KAAKR,KAAL,CAAW,OAAX,EAAoBY,YAApB,CAAiCjB,KAAKC,EAAtC,EAAyCc,KAAzC,C;;;AAATG,gB;;mBACDA,E;;;;;gDAAW,KAAKC,OAAL,E;;;;;;;;;;;;;;;;AAEpB;;;mBACMC,a;;;;;;;;qBAEc,KAAKf,KAAL,CAAW,OAAX,EAAoBgB,OAApB,CAA4B,SAA5B,EAAsC,EAACC,QAAO,CAAR,EAAtC,C;;;AAAdC,qB;;AACJ,mBAAKf,MAAL,CAAY,SAAZ,EAAsBe,OAAtB;AACA,mBAAKf,MAAL,CAAY,OAAZ,EAAoB,QAApB;gDACO,KAAKG,OAAL,E",
+    "file": "..\\..\\..\\src\\admin\\controller\\comment.js",
+    "sourcesContent": [
+        "'use strict';\nlet init={\n    mydb:\"comment\",\n    title:\"评论管理\",\n    action:\"comment\"\n}\nimport Base from './base.js';\nexport default class extends Base {\n  /**\n   * index action\n   * @return {Promise} []\n   */\n  async indexAction(){\n      let info={\n        db:init.mydb,\n        page:this.get(\"page\")||1,\n        pagesize:this.get(\"pagesize\")||10\n      }\n      let mydata=await this.model('util').getIndex(info);\n      this.assign(\"itemList\",mydata.itemList);\n      this.assign('pageData',mydata.pageData);\n      this.assign(\"title\",init.title);\n      this.assign(\"action\",init.action);\n      return this.display();\n  }\n  //删除或批量删除接口\n  async delsomeAction(){\n        let info={\n          db:init.mydb,\n          arr:this.post('delarr[]')\n        }\n        let where={id: [\"IN\", info.arr]};\n        let rs=await this.model(\"admin\").deleteRecord(info.db,where);\n        if(rs) return this.success();\n  }\n  //举报列表\n  async tiplistAction(){\n\n    let tiplist=await this.model('admin').findAll('comment',{tipoff:1});\n    this.assign('tiplist',tiplist);\n    this.assign('title','评论举报列表')\n    return this.display();\n  }\n}\n"
+    ]
+}

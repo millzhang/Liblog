@@ -1,0 +1,52 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\bootstrap\\tags.js"
+    ],
+    "names": [
+        "global",
+        "article",
+        "tags",
+        "parse",
+        "parser",
+        "nodes",
+        "lexer",
+        "tok",
+        "nextToken",
+        "args",
+        "parseSignature",
+        "advanceAfterBlockEnd",
+        "value",
+        "CallExtensionAsync",
+        "run",
+        "context",
+        "callback",
+        "where",
+        "data",
+        "think",
+        "isEmpty",
+        "limit",
+        "cid",
+        "extend",
+        "tid",
+        "flag",
+        "type",
+        "model",
+        "config",
+        "order",
+        "select",
+        "ctx",
+        "topic",
+        "item",
+        "field",
+        "join",
+        "user",
+        "on",
+        "topic_item"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\..\\src\\common\\bootstrap\\tags.js",
+    "sourcesContent": [
+        "/**\r\n置顶文章列表\r\n{% article data = \"topList\",limit= \"6\",flag=\"totop\"%}\r\n站长推荐\r\n{% article data = \"torecomList\",limit= \"6\",flag=\"torecom\"%}\r\n图文推荐\r\n{% article data = \"picrecomList\",limit= \"6\",flag=\"topicrecom\"%}\r\n*/\r\nglobal.article = function(){\r\n    this.tags = ['article'];\r\n    this.parse = function (parser, nodes, lexer) {\n        let tok = parser.nextToken();\n        let args = parser.parseSignature(null, true);\n        parser.advanceAfterBlockEnd(tok.value);\n        return new nodes.CallExtensionAsync(this, 'run', args);\n    };\n    this.run = async function (context, args, callback) {\n        let where = {'ispublished':1};\r\n        let data = think.isEmpty(args.data) ? \"data\" : args.data;\n        let limit = think.isEmpty(args.limit) ? \"10\" : args.limit;\n\r\n\t\t\t\t//分类item\r\n        let cid = think.isEmpty(args.cid) ? false :{'item':['=',args.cid]};\r\n        if(cid){\n            where = think.extend({},where,cid);\n        }\r\n\t\t\t\t//标签tag\r\n        let tid = think.isEmpty(args.tid) ? false :{'tag':['=',args.tid]};\r\n        if(tid){\r\n            where = think.extend({},where,tid);\r\n        }\r\n\t\t\t\t//标签flag\r\n\t\t\t\t// 置顶:flag=\"torecom\",站长推荐:flag=\"torecom\",图文推荐:flag=\"topicrecom\",\r\n\t\t\t\tlet flag = think.isEmpty(args.flag) ? false :{[args.flag]: 1};\r\n\t\t\t\tif(flag){\r\n\t\t\t\t\t\twhere = think.extend({},where,flag);\r\n\t\t\t\t}\r\n\r\n        // order by\r\n        let type='createtime DESC';\r\n        if(!think.isEmpty(args.type)){\n            if(args.type==\"hot\"){\n              type=\"view DESC\"\n            }\r\n        }\n\r\n        let article = await think.model('article', think.config(\"db\")).where(where).limit(limit).order(type).select();\r\n\r\n        context.ctx[data] = article;\r\n        return callback(null, '');\n    }\n}\r\n\r\n/**\r\n8条最新主题帖\r\n{% topic data = \"topicList\",limit= \"8\"%}\r\n\r\n8条最热题帖\r\n{% topic data = \"topicList\",limit= \"8\",type=\"hot\" %}\r\n\r\n*/\r\n\r\n\r\nglobal.topic = function(){\r\n    this.tags = ['topic'];\r\n    this.parse = function (parser, nodes, lexer) {\r\n        let tok = parser.nextToken();\r\n        let args = parser.parseSignature(null, true);\r\n        parser.advanceAfterBlockEnd(tok.value);\r\n        return new nodes.CallExtensionAsync(this, 'run', args);\r\n    };\r\n    this.run = async function (context, args, callback) {\r\n        let where = {};\r\n        let data = think.isEmpty(args.data) ? \"data\" : args.data;\r\n        let limit = think.isEmpty(args.limit) ? \"10\" : args.limit;\r\n\r\n\t\t\t\t//主题分类item\r\n        let item = think.isEmpty(args.item) ? false :{'item':['=',args.item]};\r\n        if(item){\r\n            where = think.extend({},where,item);\r\n        }\r\n\r\n        // order by\r\n        let type='mytime DESC';\r\n        if(!think.isEmpty(args.type)){\r\n            if(args.type==\"hot\"){\r\n              type=\"view DESC\"\r\n            }\r\n        }\r\n\r\n        let topic = await think.model('topic', think.config(\"db\")).field(\"*,li_topic.id as tid,li_topic.createtime as mytime\").join({\r\n             user: {on: \"author,name\"},\r\n             topic_item:{on:\"item,name\"}\r\n         }).where(where).limit(limit).order(type).select();\r\n        //\r\n\r\n        context.ctx[data] = topic;\r\n        return callback(null, '');\r\n    }\r\n}\r\n"
+    ]
+}

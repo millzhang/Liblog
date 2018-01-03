@@ -1,0 +1,53 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\links.js"
+    ],
+    "names": [
+        "init",
+        "mydb",
+        "title",
+        "action",
+        "indexAction",
+        "info",
+        "db",
+        "page",
+        "get",
+        "pagesize",
+        "model",
+        "getIndex",
+        "flag",
+        "mydata",
+        "assign",
+        "itemList",
+        "pageData",
+        "display",
+        "listAction",
+        "getList",
+        "itemAction",
+        "edit",
+        "add",
+        "id",
+        "getItem",
+        "item",
+        "saveAction",
+        "data",
+        "post",
+        "doSave",
+        "status",
+        "success",
+        "upstatusAction",
+        "newData",
+        "rs",
+        "where",
+        "update",
+        "delsomeAction",
+        "arr",
+        "deleteRecord"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\..\\src\\admin\\controller\\links.js",
+    "sourcesContent": [
+        "'use strict';\nlet init = {\n    mydb: \"links\",\n    title: \"友情链接管理\",\n    action: \"links\"\n}\nimport Base from './base.js';\nexport default class extends Base {\n    /**\n     * index action\n     * @return {Promise} []\n     */\n    async indexAction() {\n        let info = {\n            db: init.mydb,\n            page: this.get(\"page\") || 1,\n            pagesize: this.get(\"pagesize\") || 10\n        }\n        let mydata = await this.model('util').getIndex(info, { flag: 0 });\n        this.assign(\"itemList\", mydata.itemList);\n        this.assign('pageData', mydata.pageData);\n        this.assign(\"title\", init.title);\n        this.assign(\"action\", init.action);\n        return this.display();\n    }\n    async listAction() {\n            let info = {\n                db: init.mydb,\n                page: this.get(\"page\") || 1,\n                pagesize: this.get(\"pagesize\") || 10\n            }\n            let mydata = await this.model('util').getList(info);\n            this.assign(\"itemList\", mydata.itemList);\n            this.assign('pageData', mydata.pageData);\n            this.assign(\"title\", init.title);\n            this.assign(\"action\", init.action);\n            return this.display();\n        }\n        // 列表页\n    async itemAction() {\n            let info = {\n                db: init.mydb,\n                edit: init.edit,\n                add: init.add,\n                id: this.get('id')\n            }\n            let mydata = await this.model('util').getItem(info);\n            this.assign(\"title\", mydata.title);\n            this.assign('item', mydata.item);\n            this.assign(\"action\", init.action);\n            return this.display();\n        }\n        //编辑或者新增接口\n    async saveAction() {\n            let info = {\n                db: init.mydb,\n                data: this.post(),\n                id: this.post('id')\n            }\n            let mydata = await this.model('util').doSave(info);\n            if (mydata.status === 1) return this.success();\n        }\n        // 更新友情链接状态\n    async upstatusAction() {\n            let newData = this.post();\n            let rs = this.model(\"links\").where({ id: this.post(\"id\") }).update(newData);\n            if (rs) return this.success();\n        }\n        //删除或批量删除接口\n    async delsomeAction() {\n        let info = {\n            db: init.mydb,\n            arr: this.post('delarr[]')\n        }\n        let where = { id: [\"IN\", info.arr] };\n        let rs = await this.model(\"admin\").deleteRecord(info.db, where);\n        if (rs) return this.success();\n    }\n\n}"
+    ]
+}

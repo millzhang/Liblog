@@ -1,0 +1,42 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\service\\geetest.js"
+    ],
+    "names": [
+        "geetest",
+        "geetest_id",
+        "think",
+        "config",
+        "geetest_key",
+        "init",
+        "http",
+        "register",
+        "type",
+        "deferred",
+        "defer",
+        "data",
+        "resolve",
+        "gt",
+        "challenge",
+        "success",
+        "promise",
+        "validate",
+        "geetest_challenge",
+        "geetest_validate",
+        "seccode",
+        "geetest_seccode",
+        "err",
+        "result",
+        "console",
+        "log",
+        "status",
+        "service",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AACA;;;;;;AACA,IAAIA,UAAU,sBAAY;AACxBC,cAAYC,MAAMC,MAAN,CAAa,oBAAb,CADY;AAExBC,eAAaF,MAAMC,MAAN,CAAa,qBAAb;AAFW,CAAZ,CAAd;;;;;;;;;;AAKE;;;;mBAIAE,I,iBAAKC,I,EAAK;AACR,kCAAMD,IAAN,YAAWC,IAAX;AACD,G;AACD;;;mBACKC,Q;yGAASC,I;;;;;;AACZ;AACQD,sB,GAAS,SAATA,QAAS,GAAK;AACb,oBAAIE,WAAWP,MAAMQ,KAAN,EAAf;AACA;AACAV,wBAAQO,QAAR,CAAiB,UAAUI,IAAV,EAAgB;AAC7BF,2BAASG,OAAT,CAAiB;AACbC,wBAAIb,QAAQC,UADC;AAEba,+BAAWH,KAAKG,SAFH;AAGbC,6BAASJ,KAAKI;AAHD,mBAAjB;AAKH,iBAND;AAOA,uBAAON,SAASO,OAAhB;AACH,e;;;qBACKT,U;;;;;;;;;;;;;;;;;;;AAEf;;;mBACQU,Q;2GAASN,I,EAAKH,I;;;;;;AAClB;AACIS,sB,GAAW,SAAXA,QAAW,CAACN,IAAD,EAAQ;AACrB,oBAAIF,WAAWP,MAAMQ,KAAN,EAAf;AACAV,wBAAQiB,QAAR,CAAiB;;AAEfH,6BAAWH,KAAKO,iBAFD;AAGfD,4BAAUN,KAAKQ,gBAHA;AAIfC,2BAAST,KAAKU;;AAJC,iBAAjB,EAMG,UAAUC,GAAV,EAAeC,MAAf,EAAuB;AACxBC,0BAAQC,GAAR,CAAYF,MAAZ;AACA,sBAAIZ,OAAO,EAACe,QAAQ,SAAT,EAAX;;AAEA,sBAAIJ,OAAO,CAACC,MAAZ,EAAoB;AAClBC,4BAAQC,GAAR,CAAYH,GAAZ;AACAX,yBAAKe,MAAL,GAAc,MAAd;AACD;AACDjB,2BAASG,OAAT,CAAiBD,IAAjB;AACD,iBAfD;AAgBA,uBAAOF,SAASO,OAAhB;AACD,e;;;qBACYC,SAASN,IAAT,C;;;;;;;;;;;;;;;;;;;;;EAhDYT,MAAMyB,OAAN,CAAcC,I",
+    "file": "..\\..\\..\\src\\common\\service\\geetest.js",
+    "sourcesContent": [
+        "'use strict';\nimport Geetest from 'geetest';\nlet geetest = new Geetest({\n  geetest_id: think.config('geetest.geetest_id'),\n  geetest_key: think.config('geetest.geetest_key')\n});\nexport default class extends think.service.base {\n  /**\n   * init\n   * @return {}         []\n   */\n  init(http){\n    super.init(http);\n  }\n  //初始化\n async register(type){\n    //初始\n        let register=() =>{\n             let deferred = think.defer();\n             // 向极验申请一次验证所需的challenge\n             geetest.register(function (data) {\n                 deferred.resolve({\n                     gt: geetest.geetest_id,\n                     challenge: data.challenge,\n                     success: data.success\n                 });\n             });\n             return deferred.promise;\n         }\n  return await register();\n  }\n// 二次服务器验证\n  async validate(data,type){\n    //验证\n    let validate = (data)=>{\n      let deferred = think.defer();\n      geetest.validate({\n\n        challenge: data.geetest_challenge,\n        validate: data.geetest_validate,\n        seccode: data.geetest_seccode\n\n      }, function (err, result) {\n        console.log(result);\n        var data = {status: \"success\"};\n\n        if (err || !result) {\n          console.log(err);\n          data.status = \"fail\";\n        }\n        deferred.resolve(data);\n      });\n      return deferred.promise;\n    }\n    return await validate(data);\n  }\n}\n"
+    ]
+}

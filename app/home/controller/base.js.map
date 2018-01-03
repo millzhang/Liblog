@@ -1,0 +1,47 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\controller\\base.js"
+    ],
+    "names": [
+        "__before",
+        "getConfig",
+        "_web",
+        "assign",
+        "session",
+        "csrf",
+        "uinfo",
+        "islogin",
+        "think",
+        "isEmpty",
+        "model",
+        "findAll",
+        "name",
+        "logininfo",
+        "getOrderList",
+        "appear",
+        "tagList",
+        "navList",
+        "flag",
+        "linksList",
+        "action",
+        "http",
+        "THEME_VIEW_PATH",
+        "THEME_PATH",
+        "sep",
+        "theme",
+        "Modules_Src",
+        "module",
+        "findOne",
+        "sysdata",
+        "displayView",
+        "display",
+        "controller",
+        "base"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AACA;;;;;;;;;;;;;;AAEI;;;qBAGMA,Q;;;;;;;;;mCAGe,KAAKC,SAAL,E;;;AAAbC,gC;;AACJ,iCAAKC,MAAL,CAAY,MAAZ,EAAoBD,IAApB;;AAEA;;mCACiB,KAAKE,OAAL,CAAa,UAAb,C;;;AAAbC,gC;;AACJ,iCAAKF,MAAL,CAAY,MAAZ,EAAoBE,IAApB;;AAEA;;mCACkB,KAAKD,OAAL,CAAa,OAAb,C;;;AAAdE,iC;AACAC,mC,GAAW,CAACC,MAAMC,OAAN,CAAcH,KAAd,CAAF,GAA0B,CAA1B,GAA8B,C;;AAC5C,iCAAKH,MAAL,CAAY,SAAZ,EAAuBI,OAAvB;;gCACKC,MAAMC,OAAN,CAAcH,KAAd,C;;;;;;mCACqB,KAAKI,KAAL,CAAW,MAAX,EAAmBC,OAAnB,CAA2B,MAA3B,EAAmC,EAAEC,MAAMN,MAAMM,IAAd,EAAnC,C;;;AAAlBC,qC;;AACJ;AACA,iCAAKV,MAAL,CAAY,WAAZ,EAAyBU,UAAU,CAAV,CAAzB;;;;mCAKgB,KAAKH,KAAL,CAAW,MAAX,EAAmBI,YAAnB,CAAgC,MAAhC,EAAwC,EAAEC,QAAQ,CAAV,EAAxC,C;;;AAAhBC,mC;;AACJ,iCAAKb,MAAL,CAAY,SAAZ,EAAuBa,OAAvB;;AAEA;;mCACoB,KAAKN,KAAL,CAAW,MAAX,EAAmBI,YAAnB,CAAgC,MAAhC,EAAwC,EAAEC,QAAQ,CAAV,EAAxC,C;;;AAAhBE,mC;;AACJ,iCAAKd,MAAL,CAAY,SAAZ,EAAuBc,OAAvB;;AAEA;;mCACsB,KAAKP,KAAL,CAAW,MAAX,EAAmBI,YAAnB,CAAgC,OAAhC,EAAyC,EAAEI,MAAM,CAAR,EAAzC,C;;;AAAlBC,qC;;AACJ,iCAAKhB,MAAL,CAAY,WAAZ,EAAyBgB,SAAzB;;AAEA;AACIC,kC,GAAS,KAAKC,IAAL,CAAUD,M;;AACvB,iCAAKjB,MAAL,CAAY,QAAZ,EAAsBiB,MAAtB;;AAEA;AACA,iCAAKE,eAAL,QAA0Bd,MAAMe,UAAhC,GAA6Cf,MAAMgB,GAAnD,GAAyDtB,KAAKuB,KAA9D,GAAsEjB,MAAMgB,GAA5E,GAAkFhB,MAAMkB,WAAxF,GAAsGlB,MAAMgB,GAA5G,GAAkH,KAAKH,IAAL,CAAUM,MAA5H,GAAqInB,MAAMgB,GAA3I;AACA,iCAAKrB,MAAL,CAAY,WAAZ,EAAyB,kBAAkBD,KAAKuB,KAAvB,GAA+B,MAAxD;;;;;;;;;;;;;;;;;qBAEExB,S;;;;;;;;mCACkB,KAAKS,KAAL,CAAW,MAAX,EAAmBkB,OAAnB,CAA2B,QAA3B,C;;;AAAhBC,mC;;AACJ,iCAAK1B,MAAL,CAAY,MAAZ,EAAoB0B,OAApB;8DACOA,O;;;;;;;;;;;;;;;;;AAGX;;;qBACMC,W;+GAAYlB,I;;;;;8DACP,KAAKmB,OAAL,CAAa,KAAKT,eAAL,GAAuBV,IAAvB,GAA8B,OAA3C,C;;;;;;;;;;;;;;;;;;EArDcJ,MAAMwB,UAAN,CAAiBC,I",
+    "file": "..\\..\\..\\src\\home\\controller\\base.js",
+    "sourcesContent": [
+        "'use strict';\nimport request from \"request\";\nexport default class extends think.controller.base {\n    /**\n     * some base method in here\n     */\n    async __before() {\n\n        // assign后台设置\n        let _web = await this.getConfig();\n        this.assign('_web', _web);\n\n        //设置CSRF值\n        let csrf = await this.session(\"__CSRF__\");\n        this.assign(\"csrf\", csrf);\n\n        // 是否登录\n        let uinfo = await this.session('uInfo');\n        let islogin = (!think.isEmpty(uinfo)) ? 1 : 0;\n        this.assign(\"islogin\", islogin);\n        if (!think.isEmpty(uinfo)) {\n            let logininfo = await this.model(\"home\").findAll('user', { name: uinfo.name });\n            //自己的个人中心基本信息\n            this.assign(\"logininfo\", logininfo[0]);\n        }\n        //是否登录\n\n        //获取tags\n        let tagList = await this.model(\"home\").getOrderList(\"tags\", { appear: 1 });\n        this.assign('tagList', tagList);\n\n        //获取导航链接\n        let navList = await this.model(\"home\").getOrderList('menu', { appear: 1 });\n        this.assign(\"navList\", navList);\n\n        //获取友情链接\n        let linksList = await this.model(\"home\").getOrderList(\"links\", { flag: 1 });\n        this.assign(\"linksList\", linksList);\n\n        //assgin页面action\n        let action = this.http.action;\n        this.assign(\"action\", action);\n\n        // 设置主题地址\n        this.THEME_VIEW_PATH = `${think.THEME_PATH}${think.sep}${_web.theme}${think.sep}${think.Modules_Src}${think.sep}${this.http.module}${think.sep}`;\n        this.assign(\"theme_url\", 'static/theme/' + _web.theme + '/res');\n    }\n    async getConfig() {\n        let sysdata = await this.model(\"home\").findOne('system');\n        this.assign('_web', sysdata);\n        return sysdata;\n    }\n\n    // 渲染主题view层\n    async displayView(name) {\n        return this.display(this.THEME_VIEW_PATH + name + '.html');\n    }\n}"
+    ]
+}

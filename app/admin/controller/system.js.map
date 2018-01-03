@@ -1,0 +1,53 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\controller\\system.js"
+    ],
+    "names": [
+        "indexAction",
+        "assign",
+        "model",
+        "findOne",
+        "sysdata",
+        "display",
+        "editAction",
+        "post",
+        "mydata",
+        "updateRecord",
+        "id",
+        "rs",
+        "success",
+        "commenteditAction",
+        "setcommentAction",
+        "logoeditAction",
+        "name",
+        "setlogoAction",
+        "uploadAction",
+        "IS_USE_OSS",
+        "think",
+        "config",
+        "ALIOSS",
+        "service",
+        "alioss",
+        "file",
+        "extend",
+        "upload",
+        "console",
+        "log",
+        "json",
+        "path",
+        "filepath",
+        "oldpath",
+        "UPLOAD_PATH",
+        "newpath",
+        "split",
+        "uploadPath",
+        "basename",
+        "renameSync"
+    ],
+    "mappings": "AAAA;;;;;;;;;;;;;;;;;;;;;;;;AACA;;;;AACA;;;;AACA;;;;;;;;;;;;;;qBAIUA,W;;;;;;;AACF,iCAAKC,MAAL,CAAY,OAAZ,EAAoB,MAApB;;mCACkB,KAAKC,KAAL,CAAW,OAAX,EAAoBC,OAApB,CAA4B,QAA5B,C;;;AAAdC,mC;;AACJ,iCAAKH,MAAL,CAAY,SAAZ,EAAsBG,OAAtB;6DACO,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;qBAELC,U;;;;;;;;mCACwB,KAAKC,IAAL,E;;;AAAdC,kC;;mCACS,KAAKN,KAAL,CAAW,OAAX,EAAoBO,YAApB,CAAiC,QAAjC,EAA0C,EAACC,IAAG,CAAJ,EAA1C,EAAiDF,MAAjD,C;;;AAATG,8B;;iCACDA,E;;;;;8DAAW,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;qBAEpBC,iB;;;;;;;;mCACgB,KAAKN,IAAL,E;;;AAAdC,kC;;mCACS,KAAKN,KAAL,CAAW,OAAX,EAAoBO,YAApB,CAAiC,gBAAjC,EAAkD,EAACC,IAAG,CAAJ,EAAlD,EAAyDF,MAAzD,C;;;AAATG,8B;;iCACDA,E;;;;;8DAAW,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;qBAEZE,gB;;;;;;;AACF,iCAAKb,MAAL,CAAY,OAAZ,EAAoB,MAApB;;mCACkB,KAAKC,KAAL,CAAW,OAAX,EAAoBC,OAApB,CAA4B,gBAA5B,EAA6C,EAACO,IAAG,CAAJ,EAA7C,C;;;AAAdN,mC;;AACJ,iCAAKH,MAAL,CAAY,SAAZ,EAAsBG,OAAtB;8DACO,KAAKC,OAAL,E;;;;;;;;;;;;;;;;;qBAELU,c;;;;;;;;mCACgB,KAAKR,IAAL,E;;;AAAdC,kC;;iCACDA,OAAOQ,I;;;;;8DAAa,KAAKJ,OAAL,E;;;;;;;;;;;;;;;;;qBAGrBK,a;;;;;;AACF,iCAAKhB,MAAL,CAAY,OAAZ,EAAoB,QAApB;8DACO,KAAKI,OAAL,E;;;;;;;;;;;;;;;;AAEX;;;qBACMa,Y;;;;;;;;AAGEC,sC,GAAWC,MAAMC,MAAN,CAAa,QAAb,C;;iCACZF,U;;;;;AACC;AACIG,kC,GAASF,MAAMG,OAAN,CAAc,QAAd,C;AACTC,kC,GAAS,IAAIF,MAAJ,E;AACTG,gC,GAAOL,MAAMM,MAAN,CAAa,EAAb,EAAiB,KAAKD,IAAL,CAAU,MAAV,CAAjB,C;;mCACED,OAAOG,MAAP,CAAcF,IAAd,C;;;AAATd,8B;;AACJiB,oCAAQC,GAAR,CAAYlB,EAAZ;;iCACGA,E;;;;;8DACQ,KAAKmB,IAAL,CAAU,EAACC,MAAMX,MAAMC,MAAN,CAAa,YAAb,IAA2B,GAA3B,GAA+BV,GAAGK,IAAzC,EAAV,C;;;8DAEA,KAAKc,IAAL,CAAU,OAAV,C;;;;;;;AAGX;AACIL,iC,GAAOL,MAAMM,MAAN,CAAa,EAAb,EAAiB,KAAKD,IAAL,CAAU,MAAV,CAAjB,C;AACPO,oC,GAAWP,MAAKM,I;AAChBE,mC,GAAUb,MAAMc,W;AAChBC,mC,GAAUF,QAAQG,KAAR,CAAc,SAAd,EAAyB,CAAzB,C;AACVC,sC,GAAaF,UAAU,yC;AACvBG,oC,GAAW,eAAKA,QAAL,CAAcN,QAAd,C;;AACf,yCAAGO,UAAH,CAAcP,QAAd,EAAwBK,aAAa,UAArC;AACA,iCAAKP,IAAL,CAAU,EAACC,MAAM,wDAAP,EAAV",
+    "file": "..\\..\\..\\src\\admin\\controller\\system.js",
+    "sourcesContent": [
+        "'use strict';\nimport fs from \"fs\";\nimport path from \"path\";\nimport Base from './base.js';\n\nexport default class extends Base {\n\n    async indexAction() {\n        this.assign(\"title\",\"系统设置\");\n        let sysdata=await this.model('admin').findOne('system');\n        this.assign('sysdata',sysdata);\n        return this.display();\n     }\n    async editAction(){\n                let mydata =await this.post();\n                let rs=await this.model('admin').updateRecord('system',{id:1},mydata);\n                if(rs) return this.success();\n    }\n    async commenteditAction(){\n        let mydata =await this.post();\n        let rs=await this.model('admin').updateRecord('system_comment',{id:1},mydata);\n        if(rs) return this.success();\n    }\n    async setcommentAction(){\n        this.assign(\"title\",\"评论设置\");\n        let sysdata=await this.model('admin').findOne('system_comment',{id:1});\n        this.assign('sysdata',sysdata);\n        return this.display();\n    }\n    async logoeditAction(){\n        let mydata =await this.post();\n        if(mydata.name) return this.success();\n       \n    }\n    async setlogoAction(){\n        this.assign(\"title\",\"Logo设置\");\n        return this.display();\n    }\n    //上传图片接口\n    async uploadAction()\n    {\n\n        let IS_USE_OSS=think.config('OSS.on');\n        if(IS_USE_OSS){\n            //上传OSS图片接口\n            let ALIOSS = think.service(\"alioss\");\n            let alioss = new ALIOSS();\n            let file = think.extend({}, this.file('file'));\n            let rs=await alioss.upload(file);\n            console.log(rs);\n            if(rs){\n                return this.json({path: think.config('OSS.domain')+\"/\"+rs.name});\n            }else{\n                return this.json(\"上传失败！\");\n            }\n        }else{\n            //上传应用服务器图片接口\n            let file = think.extend({}, this.file('file'));\n            let filepath = file.path;\n            let oldpath = think.UPLOAD_PATH;\n            let newpath = oldpath.split('/upload')[0]\n            let uploadPath = newpath + '/theme/liblog/res/common/images/common/';\n            let basename = path.basename(filepath);\n            fs.renameSync(filepath, uploadPath + \"logo.jpg\");\n            this.json({path: \"/static/theme/liblog/res/common/images/common/logo.jpg\"});\n        }\n    }\n}\n"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\mail.js"
+    ],
+    "names": [],
+    "mappings": "AAAA;AACA;;;;;kBAGe;AACb;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AATa,C",
+    "file": "..\\..\\..\\src\\common\\config\\mail.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * config\n */\nexport default {\n  //发送邮件配置\n  // host:\"smtp.qq.com\",\n  // port: 465,\n  // domains:'[\"qq.com\"]',\n  // account:'262248861@qq.com',\n  // pass: \"1234567\",\n  // from:\"262248861@qq.com\",\n  // route_on: true,\n  // encoding: \"utf-8\"\n};"
+    ]
+}

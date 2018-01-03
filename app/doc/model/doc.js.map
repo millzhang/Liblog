@@ -1,0 +1,25 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\doc\\model\\doc.js"
+    ],
+    "names": [
+        "findAll",
+        "db",
+        "where",
+        "model",
+        "select",
+        "findOne",
+        "find",
+        "getOneArticle",
+        "getOrderList",
+        "order",
+        "think",
+        "base"
+    ],
+    "mappings": "AAAA;AACA;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAII;qBACAA,O,oBAAQC,E,EAAIC,K,EAAO;AACX,eAAO,KAAKC,KAAL,CAAWF,EAAX,EAAeC,KAAf,CAAqBA,KAArB,EAA4BE,MAA5B,EAAP;AACH,K;AACD;;;qBACJC,O,oBAAQJ,E,EAAIC,K,EAAO;AACf,eAAO,KAAKC,KAAL,CAAWF,EAAX,EAAeC,KAAf,CAAqBA,KAArB,EAA4BI,IAA5B,EAAP;AACH,K;;qBACDC,a,0BAAcN,E,EAAIC,K,EAAO;AACjB,eAAO,KAAKC,KAAL,CAAWF,EAAX,EAAeC,KAAf,CAAqBA,KAArB,EAA4BI,IAA5B,EAAP;AACH,K;AACD;;;qBACJE,Y,yBAAaP,E,EAAIC,K,EAAO;AACpB,eAAO,KAAKC,KAAL,CAAWF,EAAX,EAAeC,KAAf,CAAqBA,KAArB,EAA4BO,KAA5B,CAAkC,QAAlC,EAA4CL,MAA5C,EAAP;AACH,K;;;EAfwBM,MAAMP,KAAN,CAAYQ,I",
+    "file": "..\\..\\..\\src\\doc\\model\\doc.js",
+    "sourcesContent": [
+        "'use strict';\r\n/**\r\n * model\r\n */\r\nexport default class extends think.model.base {\r\n    //返回全部列表\r\n    findAll(db, where) {\r\n            return this.model(db).where(where).select();\r\n        }\r\n        //返回特定记录\r\n    findOne(db, where) {\r\n        return this.model(db).where(where).find();\r\n    }\r\n    getOneArticle(db, where) {\r\n            return this.model(db).where(where).find();\r\n        }\r\n        //获取排序后的列表\r\n    getOrderList(db, where) {\r\n        return this.model(db).where(where).order(\"orders\").select();\r\n    }\r\n\r\n}"
+    ]
+}

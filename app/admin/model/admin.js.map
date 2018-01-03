@@ -1,0 +1,52 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\admin\\model\\admin.js"
+    ],
+    "names": [
+        "findAll",
+        "db",
+        "where",
+        "model",
+        "select",
+        "findOne",
+        "find",
+        "updateRecord",
+        "data",
+        "update",
+        "addRecord",
+        "add",
+        "deleteRecord",
+        "delete",
+        "getArticleList",
+        "order",
+        "limit",
+        "getPopularList",
+        "addViewCount",
+        "increment",
+        "getPageSelect",
+        "page",
+        "pagesize",
+        "getPageCountSelect",
+        "countSelect",
+        "getArticleJoinRecord",
+        "field",
+        "join",
+        "tags",
+        "on",
+        "item",
+        "getDraftJoinRecord",
+        "getRoleJoinRecord",
+        "getUserJoinRecord",
+        "getUserListJoinRecord",
+        "manage_role",
+        "getTopicListJoinRecord",
+        "think",
+        "base"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\..\\src\\admin\\model\\admin.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * model\n */\nexport default class extends think.model.base {\n\n    //返回全部列表\n    findAll(db,where){\n        return this.model(db).where(where).select();\n    }\n\n    //返回特定记录\n    findOne(db,where){\n        return this.model(db).where(where).find();\n    }\n\n    //更新数据\n    updateRecord(db,where,data){\n        return this.model(db).where(where).update(data);\n    }\n    //添加数据\n    addRecord(db,data){\n        return this.model(db).add(data);\n    }\n\n    //删除数据\n    deleteRecord(db,where){\n        return this.model(db).where(where).delete();\n    }\n\n    //返回文章列表\n    getArticleList(where){\n        return this.model(\"article\").where(where).order(\"createtime DESC\").limit(5).select();\n    }\n    //返回点击排行列表\n    getPopularList(where){\n        return this.model(\"article\").where(where).order(\"view DESC\").limit(5).select();\n    }\n\n    //返回点击排行列表\n    addViewCount(where){\n        return this.model(\"article\").where(where).increment('view',1);\n    }\n\n    //分页初始数据\n    getPageSelect(where,page,pagesize){\n        return this.model(\"article\").where(where).order(\"createtime DESC\").page(page,pagesize).select();\n    }\n\n    //分页thinkjs分页数据\n    getPageCountSelect(where,page,pagesize){\n        return this.model(\"article\").where(where).order(\"createtime DESC\").page(page,pagesize).countSelect();\n    }\n\n    //获取文章关联表记录\n    getArticleJoinRecord(where,page,pagesize){\n      return this.model(\"article\").field(\"*,li_article.id as aid\").join({\n          tags: {on: \"tag, id\"},\n          item: {on: [\"item\", \"id\"]},\n      }).where(where).page(page,pagesize).order(\"createtime DESC\").select();\n    }\n\n    //获取草稿箱关联表记录\n    getDraftJoinRecord(join,where,page,pagesize){\n      return this.model(\"article\").field(\"*,li_article.id as aid\").join(join).where(where).page(page,pagesize).order(\"createtime DESC\").select();\n    }\n\n    //获取权限关联表记录\n    getRoleJoinRecord(join,page,pagesize){\n      return this.model(\"manage_permission\").field(\"*,li_manage_permission.id as pid\").join(join).page(page,pagesize).select();\n    }\n\n    //获取用户关联表记录\n    getUserJoinRecord(join,where){\n      return this.model('user').join(join).where(where).find();\n    }\n\n    //获取用户列表关联表记录\n    getUserListJoinRecord(where,page,pagesize){\n      return this.model('user').field(\"*,li_user.id as uid\").join({\n           manage_role: {on: \"role, id\"}\n       }).where(where).page(page,pagesize).select();\n    }\n\n    //获取主题列表关联表记录\n    getTopicListJoinRecord(page,pagesize){\n      return this.model('topic').page(page,pagesize).select();\n    }\n}\n"
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\personal\\model\\personal.js"
+    ],
+    "names": [
+        "saveUserInfo",
+        "data",
+        "where",
+        "model",
+        "update",
+        "findUser",
+        "select",
+        "findAll",
+        "db",
+        "findOne",
+        "find",
+        "updateRecord",
+        "addRecord",
+        "add",
+        "deleteRecord",
+        "delete",
+        "decrepoint",
+        "count",
+        "decrement",
+        "increpoint",
+        "increment",
+        "getMytopic",
+        "field",
+        "join",
+        "user",
+        "on",
+        "getMycollect",
+        "getPointList",
+        "order",
+        "limit",
+        "getAllPoint",
+        "getOrderList",
+        "think",
+        "base"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\..\\src\\personal\\model\\personal.js",
+    "sourcesContent": [
+        "'use strict';\r\n/**\r\n * model\r\n */\r\nexport default class extends think.model.base {\r\n\r\n    //保存用户信息\r\n    saveUserInfo(data, where) {\r\n        return this.model('user').where(where).update(data);\r\n    }\r\n\r\n    //查找用户\r\n    findUser(where) {\r\n        return this.model('user').where(where).select();\r\n    }\r\n\r\n    //返回全部列表\r\n    findAll(db, where) {\r\n        return this.model(db).where(where).select();\r\n    }\r\n\r\n    //返回特定记录\r\n    findOne(db, where) {\r\n        return this.model(db).where(where).find();\r\n    }\r\n\r\n    //更新数据\r\n    updateRecord(db, where, data) {\r\n        return this.model(db).where(where).update(data);\r\n    }\r\n\r\n    //添加数据\r\n    addRecord(db, data) {\r\n        return this.model(db).add(data);\r\n    }\r\n\r\n    //添加数据\r\n    deleteRecord(db, where) {\r\n        return this.model(db).where(where).delete();\r\n    }\r\n\r\n    decrepoint(where, count) {\r\n        return this.model(\"user\").where(where).decrement('point', count);\r\n    }\r\n\r\n    increpoint(where, count) {\r\n        return this.model(\"user\").where(where).increment('point', count);\r\n    }\r\n\r\n    getMytopic(where) {\r\n        return this.model('topic').field(\"*,li_topic.id as tid,li_topic.createtime as mytime\").join({\r\n            user: {on: \"author,name\"}\r\n        }).where(where).select();\r\n    }\r\n\r\n    getMycollect(where) {\r\n        return this.model('user_collect').field(\"*,li_user_collect.createtime as mytime\").join({\r\n            user: {on: \"author,name\"}\r\n        }).where(where).select();\r\n    }\r\n\r\n    // 积分排行\r\n    getPointList() {\r\n        return this.model('user').field(\"id,name,point\").order(\"point desc\").limit(10).select();\r\n    }\r\n\r\n    // 所有积分排行\r\n    getAllPoint() {\r\n        return this.model('user').field(\"id,point\").order(\"point desc\").select();\r\n    }\r\n\r\n    //获取排序后的列表\r\n    getOrderList(db, where) {\r\n        return this.model(db).where(where).order(\"orders\").select();\r\n    }\r\n}"
+    ]
+}

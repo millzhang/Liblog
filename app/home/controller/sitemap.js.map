@@ -1,0 +1,39 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\controller\\sitemap.js"
+    ],
+    "names": [
+        "Create",
+        "createXml",
+        "data",
+        "arr",
+        "now",
+        "think",
+        "datetime",
+        "Date",
+        "push",
+        "homeurl",
+        "list",
+        "forEach",
+        "val",
+        "id",
+        "article",
+        "createtime",
+        "topic",
+        "updatetime",
+        "user",
+        "name",
+        "others",
+        "url",
+        "writeFileSync",
+        "resolve",
+        "ROOT_PATH",
+        "join"
+    ],
+    "mappings": "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",
+    "file": "..\\..\\..\\src\\home\\controller\\sitemap.js",
+    "sourcesContent": [
+        "'use strict';\r\nlet Create = {};\r\nimport fs from 'fs';\r\nimport path from 'path';\r\nimport Base from './base.js';\r\n/**\r\n * 生成xml地图\r\n * @param  {object} data 数据包 {article: [], list: [], search: []}\r\n */\r\nCreate.createXml = function(data) {\r\n\r\n    let arr = [];\r\n    // let now = think.datatime(new Date(), 'yyyy-MM-dd');\r\n    let now = think.datetime(new Date(),'YYYY-MM-DD')\r\n    arr.push('<?xml version=\"1.0\" encoding=\"UTF-8\"?>');\r\n    arr.push('<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">');\r\n\r\n\r\n    // 添加主页\r\n    arr.push('<url>');\r\n    arr.push('<loc>' + data.homeurl + '</loc>');\r\n    arr.push('<lastmod>' + now + '</lastmod>');\r\n    arr.push('<changefreq>always</changefreq>');\r\n    arr.push('<priority>1.0</priority>');\r\n    arr.push('</url>');\r\n\r\n    //添加列表\r\n    // console.log(data.list);\r\n    data.list.forEach(function(val) {\r\n        arr.push('<url>');\r\n        arr.push('<loc>' + data.homeurl + 'category/'+ (val.id) +'.html' + '</loc>');\r\n        arr.push('<lastmod>' + now + '</lastmod>');\r\n        arr.push('<changefreq>always</changefreq>');\r\n        arr.push('<priority>0.9</priority>');\r\n        arr.push('</url>');\r\n    });\r\n\r\n    //添加文章\r\n    data.article.forEach(function(val) {\r\n        arr.push('<url>');\r\n        arr.push('<loc>' + data.homeurl + 'page/'+ val.id +'.html' + '</loc>');\r\n        arr.push('<lastmod>' + think.datetime(val.createtime,'YYYY-MM-DD') + '</lastmod>');\r\n        arr.push('<changefreq>always</changefreq>');\r\n        arr.push('<priority>0.8</priority>');\r\n        arr.push('</url>');\r\n    });\r\n\r\n    //添加主题\r\n    data.topic.forEach(function(val) {\r\n        arr.push('<url>');\r\n        arr.push('<loc>' + data.homeurl + 'topic/item/'+ val.id +'.html' + '</loc>');\r\n        arr.push('<lastmod>' + think.datetime(val.updatetime,'YYYY-MM-DD') + '</lastmod>');\r\n        arr.push('<changefreq>always</changefreq>');\r\n        arr.push('<priority>0.8</priority>');\r\n        arr.push('</url>');\r\n    });\r\n\r\n    //添加个人主页\r\n    data.user.forEach(function(val) {\r\n        arr.push('<url>');\r\n        arr.push('<loc>' + data.homeurl + 'personal/@'+ val.name + '</loc>');\r\n        arr.push('<lastmod>' + think.datetime(val.createtime,'YYYY-MM-DD') + '</lastmod>');\r\n        arr.push('<changefreq>always</changefreq>');\r\n        arr.push('<priority>0.8</priority>');\r\n        arr.push('</url>');\r\n    });\r\n\r\n    //添加其他页面\r\n   data.others.forEach(function(val) {\r\n        arr.push('<url>');\r\n        arr.push('<loc>' + data.homeurl + val.url + '</loc>');\r\n        arr.push('<lastmod>' + now + '</lastmod>');\r\n        arr.push('<changefreq>always</changefreq>');\r\n        arr.push('<priority>0.8</priority>');\r\n        arr.push('</url>');\r\n    });\r\n\r\n    arr.push('</urlset>');\r\n    fs.writeFileSync(path.resolve(think.ROOT_PATH, './www/sitemap.xml'), arr.join('\\n'));\r\n}\r\nexport default Create;\r\n"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\common\\config\\redis.js"
+    ],
+    "names": [
+        "host",
+        "port",
+        "password",
+        "timeout",
+        "log_connect"
+    ],
+    "mappings": ";;;kBAAe;AACXA,UAAM,WADK;AAEXC,UAAM,IAFK;AAGXC,cAAU,EAHC;AAIXC,aAAS,CAJE;AAKXC,iBAAa;AALF,C",
+    "file": "..\\..\\..\\src\\common\\config\\redis.js",
+    "sourcesContent": [
+        "export default {\n    host: \"127.0.0.1\",\n    port: 6379,\n    password: \"\",\n    timeout: 0,\n    log_connect: true\n};"
+    ]
+}

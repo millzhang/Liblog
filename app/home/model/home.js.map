@@ -1,0 +1,42 @@
+{
+    "version": 3,
+    "sources": [
+        "..\\..\\..\\src\\home\\model\\home.js"
+    ],
+    "names": [
+        "addUser",
+        "data",
+        "model",
+        "add",
+        "saveUserInfo",
+        "where",
+        "update",
+        "findUser",
+        "select",
+        "findAll",
+        "db",
+        "findOne",
+        "find",
+        "updateRecord",
+        "addRecord",
+        "getArticleList",
+        "order",
+        "limit",
+        "getPopularList",
+        "addViewCount",
+        "increment",
+        "getPageSelect",
+        "page",
+        "pagesize",
+        "getPageCountSelect",
+        "countSelect",
+        "getOrderList",
+        "think",
+        "base"
+    ],
+    "mappings": "AAAA;AACA;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAKI;qBACAA,O,oBAAQC,I,EAAM;AACN,eAAO,KAAKC,KAAL,CAAW,MAAX,EAAmBC,GAAnB,CAAuBF,IAAvB,CAAP;AACH,K;AACD;;;qBACJG,Y,yBAAaH,I,EAAMI,K,EAAO;AACtB,eAAO,KAAKH,KAAL,CAAW,MAAX,EAAmBG,KAAnB,CAAyBA,KAAzB,EAAgCC,MAAhC,CAAuCL,IAAvC,CAAP;AACH,K;;AAED;;;qBACAM,Q,qBAASF,K,EAAO;AACZ,eAAO,KAAKH,KAAL,CAAW,MAAX,EAAmBG,KAAnB,CAAyBA,KAAzB,EAAgCG,MAAhC,EAAP;AACH,K;;AAED;;;qBACAC,O,oBAAQC,E,EAAIL,K,EAAO;AACX,eAAO,KAAKH,KAAL,CAAWQ,EAAX,EAAeL,KAAf,CAAqBA,KAArB,EAA4BG,MAA5B,EAAP;AACH,K;AACD;;;qBACJG,O,oBAAQD,E,EAAIL,K,EAAO;AACX,eAAO,KAAKH,KAAL,CAAWQ,EAAX,EAAeL,KAAf,CAAqBA,KAArB,EAA4BO,IAA5B,EAAP;AACH,K;AACD;;;qBACJC,Y,yBAAaH,E,EAAIL,K,EAAOJ,I,EAAM;AACtB,eAAO,KAAKC,KAAL,CAAWQ,EAAX,EAAeL,KAAf,CAAqBA,KAArB,EAA4BC,MAA5B,CAAmCL,IAAnC,CAAP;AACH,K;AACD;;;qBACJa,S,sBAAUJ,E,EAAIT,I,EAAM;AACZ,eAAO,KAAKC,KAAL,CAAWQ,EAAX,EAAeP,GAAf,CAAmBF,IAAnB,CAAP;AACH,K;AACD;;;qBACJc,c,2BAAeV,K,EAAO;AACd,eAAO,KAAKH,KAAL,CAAW,SAAX,EAAsBG,KAAtB,CAA4BA,KAA5B,EAAmCW,KAAnC,CAAyC,iBAAzC,EAA4DC,KAA5D,CAAkE,CAAlE,EAAqET,MAArE,EAAP;AACH,K;AACD;;;qBACJU,c,2BAAeb,K,EAAO;AACd,eAAO,KAAKH,KAAL,CAAW,SAAX,EAAsBG,KAAtB,CAA4BA,KAA5B,EAAmCW,KAAnC,CAAyC,WAAzC,EAAsDC,KAAtD,CAA4D,CAA5D,EAA+DT,MAA/D,EAAP;AACH,K;AACD;;;qBACJW,Y,yBAAad,K,EAAO;AACZ,eAAO,KAAKH,KAAL,CAAW,SAAX,EAAsBG,KAAtB,CAA4BA,KAA5B,EAAmCe,SAAnC,CAA6C,MAA7C,EAAqD,CAArD,CAAP;AACH,K;AACD;;;qBACJC,a,0BAAchB,K,EAAOiB,I,EAAMC,Q,EAAU;AAC7B,eAAO,KAAKrB,KAAL,CAAW,SAAX,EAAsBG,KAAtB,CAA4BA,KAA5B,EAAmCW,KAAnC,CAAyC,iBAAzC,EAA4DM,IAA5D,CAAiEA,IAAjE,EAAuEC,QAAvE,EAAiFf,MAAjF,EAAP;AACH,K;AACD;;;qBACJgB,kB,+BAAmBnB,K,EAAOiB,I,EAAMC,Q,EAAU;AAClC,eAAO,KAAKrB,KAAL,CAAW,SAAX,EAAsBG,KAAtB,CAA4BA,KAA5B,EAAmCW,KAAnC,CAAyC,iBAAzC,EAA4DM,IAA5D,CAAiEA,IAAjE,EAAuEC,QAAvE,EAAiFE,WAAjF,EAAP;AACH,K;AACD;;;qBACJC,Y,yBAAahB,E,EAAIL,K,EAAO;AACpB,eAAO,KAAKH,KAAL,CAAWQ,EAAX,EAAeL,KAAf,CAAqBA,KAArB,EAA4BW,KAA5B,CAAkC,QAAlC,EAA4CR,MAA5C,EAAP;AACH,K;;;EAvDwBmB,MAAMzB,KAAN,CAAY0B,I",
+    "file": "..\\..\\..\\src\\home\\model\\home.js",
+    "sourcesContent": [
+        "'use strict';\n/**\n * model\n */\nexport default class extends think.model.base {\n\n    // 添加新用户\n    addUser(data) {\n            return this.model('user').add(data);\n        }\n        //保存用户信息\n    saveUserInfo(data, where) {\n        return this.model('user').where(where).update(data);\n    }\n\n    //查找用户\n    findUser(where) {\n        return this.model('user').where(where).select();\n    }\n\n    //返回全部列表\n    findAll(db, where) {\n            return this.model(db).where(where).select();\n        }\n        //返回特定记录\n    findOne(db, where) {\n            return this.model(db).where(where).find();\n        }\n        //更新数据\n    updateRecord(db, where, data) {\n            return this.model(db).where(where).update(data);\n        }\n        //添加数据\n    addRecord(db, data) {\n            return this.model(db).add(data);\n        }\n        //返回文章列表\n    getArticleList(where) {\n            return this.model(\"article\").where(where).order(\"createtime DESC\").limit(5).select();\n        }\n        //返回点击排行列表\n    getPopularList(where) {\n            return this.model(\"article\").where(where).order(\"view DESC\").limit(5).select();\n        }\n        //返回点击排行列表\n    addViewCount(where) {\n            return this.model(\"article\").where(where).increment('view', 1);\n        }\n        //分页初始数据\n    getPageSelect(where, page, pagesize) {\n            return this.model(\"article\").where(where).order(\"createtime DESC\").page(page, pagesize).select();\n        }\n        //分页thinkjs分页数据\n    getPageCountSelect(where, page, pagesize) {\n            return this.model(\"article\").where(where).order(\"createtime DESC\").page(page, pagesize).countSelect();\n        }\n        //获取排序后的列表\n    getOrderList(db, where) {\n        return this.model(db).where(where).order(\"orders\").select();\n    }\n}"
+    ]
+}
