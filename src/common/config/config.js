@@ -4,8 +4,8 @@
  */
 export default {
     //key: value
-    host: "127.0.0.1", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。
-    port: 8361,
+    //host: "122.112.253.84", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。
+    port: 8360,
     pagesize: 10,
     route_on: true,
     encoding: "utf-8",

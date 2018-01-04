@@ -2,7 +2,7 @@
   "apps": [{
     "name": "liblog",
     "script": "www/production.js",
-    "cwd": "E:/jsout/online/liblog",
+    "cwd": "C:/Project/LiBlog",
     "max_memory_restart": "1G",
     "autorestart": true,
     "node_args": [],

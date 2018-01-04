@@ -1,11 +1,13 @@
 'use strict';
 /**
-               * config
-               */exports.__esModule = true;exports.default =
-{
+ * config
+ */
+
+exports.__esModule = true;
+exports.default = {
     //key: value
-    host: "127.0.0.1", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。
-    port: 8361,
+    //host: "122.112.253.84", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。
+    port: 8360,
     pagesize: 10,
     route_on: true,
     encoding: "utf-8",
@@ -21,11 +23,13 @@
     geetest: {
         //极验验证码配置，申请地址：http://www.geetest.com，请改成自己帐号！
         geetest_id: 'a4ba8061bc9741e47980e8b69e9afbf6',
-        geetest_key: '4da57a23875809329871b4e0be3a53d6' },
-
+        geetest_key: '4da57a23875809329871b4e0be3a53d6'
+    },
     point: {
         addcollect: 1,
         addtopic: 5,
-        addcomment: 3 },
-
-    resource_reg: /^(static\/|theme\/|[^\/]+\.(?!js|html|xml)\w+$)/ };
+        addcomment: 3
+    },
+    resource_reg: /^(static\/|theme\/|[^\/]+\.(?!js|html|xml)\w+$)/
+};
+//# sourceMappingURL=config.js.map

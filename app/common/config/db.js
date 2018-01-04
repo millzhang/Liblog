@@ -13,7 +13,7 @@
       port: '3306',
       database: 'liblog',
       user: 'root',
-      password: '',
+      password: 'shamrock5488',
       prefix: 'li_',
       encoding: 'utf8' },
 

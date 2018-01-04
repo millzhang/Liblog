@@ -4,7 +4,6 @@
         "..\\..\\..\\src\\common\\config\\config.js"
     ],
     "names": [
-        "host",
         "port",
         "pagesize",
         "route_on",
@@ -26,9 +25,9 @@
         "addcomment",
         "resource_reg"
     ],
-    "mappings": "AAAA;AACA;;;;;kBAGe;AACX;AACAA,UAAM,WAFK,EAEQ;AACnBC,UAAM,IAHK;AAIXC,cAAU,EAJC;AAKXC,cAAU,IALC;AAMXC,cAAU,OANC;AAOXC,SAAK;AACDC,YAAI,KADH,EACU;AACXC,gBAAQ,EAFP,EAEW;AACZC,iBAAS,qBAHR;AAIDC,gBAAQ,EAJP,EAIW;AACZC,qBAAa,EALZ,EAKgB;AACjBC,yBAAiB,EANhB,EAMoB;AACrBC,gBAAQ,EAPP,CAOU;AAPV,KAPM;AAgBXC,aAAS;AACL;AACAC,oBAAY,kCAFP;AAGLC,qBAAa;AAHR,KAhBE;AAqBXC,WAAO;AACHC,oBAAY,CADT;AAEHC,kBAAU,CAFP;AAGHC,oBAAY;AAHT,KArBI;AA0BXC,kBAAc;AA1BH,C",
+    "mappings": "AAAA;AACA;;;;;kBAGe;AACX;AACA;AACAA,UAAM,IAHK;AAIXC,cAAU,EAJC;AAKXC,cAAU,IALC;AAMXC,cAAU,OANC;AAOXC,SAAK;AACDC,YAAI,KADH,EACU;AACXC,gBAAQ,EAFP,EAEW;AACZC,iBAAS,qBAHR;AAIDC,gBAAQ,EAJP,EAIW;AACZC,qBAAa,EALZ,EAKgB;AACjBC,yBAAiB,EANhB,EAMoB;AACrBC,gBAAQ,EAPP,CAOU;AAPV,KAPM;AAgBXC,aAAS;AACL;AACAC,oBAAY,kCAFP;AAGLC,qBAAa;AAHR,KAhBE;AAqBXC,WAAO;AACHC,oBAAY,CADT;AAEHC,kBAAU,CAFP;AAGHC,oBAAY;AAHT,KArBI;AA0BXC,kBAAc;AA1BH,C",
     "file": "..\\..\\..\\src\\common\\config\\config.js",
     "sourcesContent": [
-        "'use strict';\n/**\n * config\n */\nexport default {\n    //key: value\n    host: \"127.0.0.1\", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。\n    port: 8361,\n    pagesize: 10,\n    route_on: true,\n    encoding: \"utf-8\",\n    OSS: {\n        on: false, //true上传oss服务器，false上传应用服务器\n        domain: \"\", //例：http://statics.jsout.com\n        img_url: \"static/upload/pics/\",\n        region: '', //例：oss-cn-shanghai\n        accessKeyId: '', //id\n        accessKeySecret: '', //key\n        bucket: '' //jsout\n    },\n    geetest: {\n        //极验验证码配置，申请地址：http://www.geetest.com，请改成自己帐号！\n        geetest_id: 'a4ba8061bc9741e47980e8b69e9afbf6',\n        geetest_key: '4da57a23875809329871b4e0be3a53d6'\n    },\n    point: {\n        addcollect: 1,\n        addtopic: 5,\n        addcomment: 3\n    },\n    resource_reg: /^(static\\/|theme\\/|[^\\/]+\\.(?!js|html|xml)\\w+$)/,\n};"
+        "'use strict';\n/**\n * config\n */\nexport default {\n    //key: value\n    //host: \"122.112.253.84\", //禁止端口访问，如 http://115.29.109.30:8361；删除则不限制。\n    port: 8360,\n    pagesize: 10,\n    route_on: true,\n    encoding: \"utf-8\",\n    OSS: {\n        on: false, //true上传oss服务器，false上传应用服务器\n        domain: \"\", //例：http://statics.jsout.com\n        img_url: \"static/upload/pics/\",\n        region: '', //例：oss-cn-shanghai\n        accessKeyId: '', //id\n        accessKeySecret: '', //key\n        bucket: '' //jsout\n    },\n    geetest: {\n        //极验验证码配置，申请地址：http://www.geetest.com，请改成自己帐号！\n        geetest_id: 'a4ba8061bc9741e47980e8b69e9afbf6',\n        geetest_key: '4da57a23875809329871b4e0be3a53d6'\n    },\n    point: {\n        addcollect: 1,\n        addtopic: 5,\n        addcomment: 3\n    },\n    resource_reg: /^(static\\/|theme\\/|[^\\/]+\\.(?!js|html|xml)\\w+$)/,\n};"
     ]
 }

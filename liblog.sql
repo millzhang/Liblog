@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-01-03 17:23:51
+Date: 2018-01-04 13:26:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,11 +43,14 @@ CREATE TABLE `li_article` (
   `flag_c` smallint(255) DEFAULT '0',
   `flag_d` smallint(255) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=420 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=423 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of li_article
 -- ----------------------------
+INSERT INTO `li_article` VALUES ('420', 'Javascript Patterns[Stoyan stefanov]', 'javascript模式阅读笔记', '<h3 id=\"-\">模式</h3>\n<ul>\n<li>设计模式</li>\n<li>编码模式</li>\n<li>反模式</li>\n</ul>\n<h3 id=\"-\">面向对象</h3>\n<p>首先，<code>javascript</code>一切皆对象。</p>\n<p>对象的两种类型：</p>\n<ul>\n<li>原生的（Native）</li>\n</ul>\n<blockquote>\n<p>[info] 独立与宿主环境的<code>ECMAScript</code>实现提供的对象</p>\n</blockquote>\n<ul>\n<li>主机的（Host）</li>\n</ul>\n<blockquote>\n<p>[info] 在主机环境中（如：浏览器）定义的对象</p>\n</blockquote>\n<h3 id=\"-prototype-\">原型（prototype）</h3>\n<p>当我们创建一个函数时，<code>javascript</code>默认给它创建了一个对象属性<code>prototype</code>。<br>这个<code>prototype</code>的属性值是一个对象，默认只有一个<code>constructor</code>的属性，指向所创建的函数本身。</p>\n<pre><code class=\"lang-js\">let Apple = function(){\n\n}\nlet app = new Apple();\nconsole.log(app.__proto__.constructor == Apple);//true\n</code></pre>\n<p>每个对象都有一个隐藏的属性——<code>“__proto__”</code>，这个属性引用了创建这个对象的函数的<code>prototype</code>。</p>\n<h3 id=\"-\">函数声明和函数表达式</h3>\n<ul>\n<li>表达式</li>\n</ul>\n<pre><code class=\"lang-js\">//又名匿名函数\nvar add = function(a,b){\n    return a+b;\n}\nadd.name;// \"\"\n//命名函数表达式，是函数表达式的一种\nvar add = function add(a,b){\n}\n\nadd.name; // \"add\"\n</code></pre>\n<ul>\n<li>函数声明<pre><code class=\"lang-js\">function foo(){\n  //函数主体\n}\nfoo.name; // \"foo\"\n</code></pre>\n</li>\n</ul>\n<h3 id=\"apply-call\">apply与call</h3>\n<h4 id=\"apply\">apply</h4>\n<p>带有两个参数，第一个参数是指定将要绑定到该函数内部<code>this</code>的一个对象；<br>第二个参数是一个数组或多个变量参数，这些参数将变成可用于该函数内部的类似数组的<code>arguments</code>对象。<br>如果第一个参数为<code>null</code>，那么<code>this</code>将指向全局对象。</p>\n<pre><code class=\"lang-js\">Function.apply(obj,args)\n</code></pre>\n<blockquote>\n<p>[info] <code>apply</code>方法能劫持另外一个对象的方法，继承另外一个对象的属性.  </p>\n</blockquote>\n<p>eg:</p>\n<pre><code class=\"lang-js\">//定义一个函数\nfunction App(name){\n  this.name = name;\n  this.created();\n}\n\n//扩展原型\nApp.prototype={\n  created:function(){\n    console.log(`${this.name} has been created!`);\n  },\n  destroy:function(reason){\n    let re = reason || \"no reason\";\n    this.destroy_time = new Date().getTime();\n    console.log(`${this.name} has been destroyed at ${this.destroy_time} for ${re}!`);\n  }\n}\n\nlet app = new App(\'app\');\nconsole.log(app.destroy());//app has been destroyed at 1514355097846 for no reason!\n\nlet test = {\n  name:\'test\'\n}\napp.destroy.apply(test,[\"it is test simple\"]);//test has been destroyed at 1514355097847 for it is test simple!\n</code></pre>\n<p><strong>简单概括就是</strong>：</p>\n<blockquote>\n<p>[danger]  将<code>app.destroy</code>的方法，应用到<code>test</code>对象上，使得<code>test</code>也具有<code>destroy</code>的功能。<br>换句话说，就是为了改变函数体内部 <code>this</code> 的指向</p>\n</blockquote>\n<h4 id=\"call\">call</h4>\n<p><code>call</code>的用法和功能与<code>apply</code>完全一样，只是接收参数不一样。</p>\n<pre><code class=\"lang-js\">Function.call(obj,[param1[,param2[,…[,paramN]]]])\n</code></pre>\n<p>没有参数数量的限制，参数已参数列表的形式传递过来。</p>\n<h4 id=\"-\">应用</h4>\n<ul>\n<li>继承</li>\n</ul>\n<pre><code class=\"lang-js\">function Parent(){\n  this.name = \"parent\";\n  this.age = 18;\n  this.infomation = \"this is a girl\";\n}\n\nlet child = {};\nParent.apply(child);\nconsole.log(child.name)// \"parent\"\n</code></pre>\n<ul>\n<li>获取数组中的最大值</li>\n</ul>\n<pre><code class=\"lang-js\">let array = [1,2,3,3,10,0];\nlet maxVal = Math.max.apply(null,array);\nconsole.log(maxVal);//10\n</code></pre>\n<h4 id=\"-bind\">还有个bind</h4>\n<pre><code class=\"lang-js\">obj.bind(thisObj, arg1, arg2, ...);\n</code></pre>\n<p>把obj绑定到thisObj，这时候thisObj具备了obj的属性和方法。与call和apply不同的是，bind绑定后不会立即执行。</p>\n<pre><code class=\"lang-js\">function add(j, k){\n    return j+k;\n}\n\n\nfunction sub(j, k){\n    return j-k;\n}\n\nadd.bind(sub, 5, 3); //不再返回8\nadd.bind(sub, 5, 3)(); //8\n</code></pre>\n<h3 id=\"curry-\">Curry化（柯里化）</h3>\n<blockquote>\n<p>[info] 柯里化（Currying），又称部分求值（Partial Evaluation），是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>\n</blockquote>\n<p>一个通用柯里化函数：</p>\n<pre><code class=\"lang-js\">let currying = function(fn){\n  let stored_args = [].slice.call(arguments,1);\n  console.log(stored_args);//截取第一个参数\n  return function(){\n    let args = stored_args.concat([].slice.call(arguments));\n    return fn.apply(null,args);\n  }\n}\n\nfunction add(x,y){\n  return x+y;\n}\n\nlet result = currying(add,5)(2);\nconsole.log(result);//7\n</code></pre>\n<blockquote>\n<p>[warning] <code>arguments</code>这个对象还有一个名叫 callee 的属性，该属性是一个指针，指向拥有这个 arguments 对象的函数。</p>\n</blockquote><p><br></p>', '', 'MillZhang', '2018-01-03 18:42:24', '35', '0', '1', '0', '1', 'javascript', '0', '1', '', '3', '0', '0', '0', '0', '0');
+INSERT INTO `li_article` VALUES ('421', '备忘（持续更新）', '', '<h3 id=\"-object-freeze-\"><code>Object.freeze()</code></h3>\n<p><code>Object.freeze()</code> 方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。</p>\n<ul>\n<li>浅冻结</li>\n<li>深冻结</li>\n</ul>\n<blockquote>\n<p><a href=\"https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze\">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze</a></p>\n</blockquote>\n<h3 id=\"-object-defineproperty-obj-prop-descriptor-\"><code>Object.defineProperty(obj,prop,descriptor)</code></h3>\n<blockquote>\n<p>直接在一个对象上定义一个新的属性,或者修改一个对象的现有属性,并返回这个对象.</p>\n</blockquote>\n<h4 id=\"-\">参数</h4>\n<ul>\n<li><code>obj</code>:目标对象</li>\n<li><code>prop</code>:待定义或修改的属性名称</li>\n<li><code>descriptor</code>:待定义或修改属性的描述符</li>\n</ul>\n<h4 id=\"-\">示例</h4>\n<pre><code class=\"lang-js\">var bValue;\nvar o = {}; // 创建一个新对象\nObject.defineProperty(o, \"b\", {\n  get : function(){\n    return bValue;\n  },\n  set : function(newValue){\n    bValue = newValue;\n  },\n  enumerable : true,\n  configurable : true,\n  writable:true//为false时代表属性\"不可写\"\n});\n</code></pre>\n<h3 id=\"-iife-\"><code>IIFE</code></h3>\n<p>即<strong>立即执行函数表达式</strong></p>\n<h3 id=\"how-to-convert-a-set-to-an-array-\">How to convert a <code>Set</code> to an <code>Array</code>?</h3>\n<pre><code>let setVal = new Set([\'b\',\'c\',\'b\',\'a\']);\n//1.Array.from\nconsole.log(Array.from(setVal));//[b,c,a]\n//2.spread \nconsole.log([...setVal])\n</code></pre><h3 id=\"js-\">js取随机数</h3>\n<pre><code class=\"lang-js\">Math.random()\n</code></pre>\n<h3 id=\"-arguments-\">函数列表参数<code>arguments</code></h3>\n<p>首先,它是一个类数组对象<code>Array-Like Object</code>,就是拥有<code>length</code>属性,但不能使用数组方法(<code>forEach</code>,<code>map</code>);</p>\n<ul>\n<li>将<code>arguments</code>对象转换为数组对象</li>\n</ul>\n<pre><code>//1\narguments = [].slice.call(arguments);\n//2\narguments = Array.from(arguments)\n//3\n[..arguments]\n</code></pre><ul>\n<li><a href=\"https://segmentfault.com/a/1190000008620953\">链接</a></li>\n</ul>\n<h3 id=\"-commonjs-exports-module-exports-\"><code>commonjs</code>中<code>exports</code>与<code>module.exports</code>的区别</h3>\n<p><code>exports</code>对象是通过形参的方式传入的,直接赋值形参会改变形参的引用,但不能改变作用域外的值.<br>而<code>module.exports</code>不改变形参的</p>\n<hr>', '', '', '2018-01-04 11:15:50', '1', '1', '1', '0', '1', '', '0', '1', '', '1', '0', '0', '0', '0', '0');
+INSERT INTO `li_article` VALUES ('422', 'vue集成pdf阅读器', 'pdf.js可以实现在html下直接浏览pdf文档，是一款开源的pdf文档读取解析插件', '<h3 id=\"-\">介绍</h3>\n<p><code>pdf.js</code>可以实现在<code>html</code>下直接浏览pdf文档，是一款开源的<code>pdf</code>文档读取解析插件</p>\n<p><code>pdf.js</code>主要包含两个库文件，一个<code>pdf.js</code>和一个<code>pdf.worker.js</code>，，一个负责<code>API</code>解析，一个负责核心解析</p>\n<ul>\n<li><a href=\"http://oritfw5nq.bkt.clouddn.com/pdf.zip\">下载地址</a></li>\n<li><a href=\"https://github.com/rkusa/pdfjs\">github</a></li>\n</ul>\n<h3 id=\"-\">使用步骤</h3>\n<p>将文件解压到<code>static</code>目录下,在预览页面中使用,使用<code>iframe</code>访问<code>static中web内的viewer.html</code>文件,<code>pdf</code>路径通过参数传递,即可使用该插件访问<code>pdf</code>文件</p>\n<pre><code class=\"lang-html\">   &lt;iframe class=\"pdf-viewer\" :src=\'\"/static/pdf/web/viewer.html?file=http://image.cache.timepack.cn/nodejs.pdf\"\' width=\"50%\" height=\"800\" scrolling=\"no\"&gt;\n      您的浏览器不支持PDF阅读\n    &lt;/iframe&gt;\n</code></pre>\n<h3 id=\"-\">问题</h3>\n<p><code>pdf</code>兼容<code>ie,firefox,chrome</code>等主流的浏览器,故浏览器兼容方面无需担心.然后主要注意的是:</p>\n<ol>\n<li>源码必须放在<code>static</code>目录下作为静态资源引入项目,不然会影响<code>webpack</code>编译;</li>\n<li>访问网络<code>pdf</code>文件存在跨域问题,目前暂时是这样配置:<code>Access-Control-Allow-Origin:*</code></li>\n</ol>\n<h3 id=\"-\">参考</h3>\n<ol>\n<li><a href=\"https://www.cnblogs.com/jacksoft/p/5302587.html\">https://www.cnblogs.com/jacksoft/p/5302587.html</a></li>\n<li><a href=\"https://github.com/lewiscutey/PDF/tree/gh-pages\">https://github.com/lewiscutey/PDF/tree/gh-pages</a></li>\n<li><a href=\"https://github.com/rkusa/pdfjs\">https://github.com/rkusa/pdfjs</a></li>\n<li><a href=\"http://blog.csdn.net/xiao_bin_shen/article/details/77778514\">http://blog.csdn.net/xiao_bin_shen/article/details/77778514</a></li>\n</ol>\n<p>&lt;p class=\"over\"&gt;Over!&lt;/p&gt;</p><p><br></p>', '/static/upload/pics/2018/1/4pBa3zCo0Ey-1UqlmFwLh9KpN.jpg', 'MillZhang', '2018-01-04 12:18:24', '2', '1', '1', '0', '5', '', '0', '1', '', '1', '0', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for li_comment
@@ -82,7 +85,7 @@ CREATE TABLE `li_guest` (
   `contact` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `guest` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of li_guest
@@ -284,7 +287,7 @@ CREATE TABLE `li_menu` (
   `orders` int(255) DEFAULT '0' COMMENT '排序',
   `target` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of li_menu
@@ -344,7 +347,7 @@ CREATE TABLE `li_tags` (
   `appear` int(11) DEFAULT '1',
   `orders` int(255) DEFAULT '0' COMMENT '显示顺序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of li_tags
@@ -378,7 +381,7 @@ CREATE TABLE `li_topic` (
   `replycount` int(11) DEFAULT '0' COMMENT '回复数',
   `show` smallint(255) DEFAULT '1' COMMENT '是否显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of li_topic
@@ -400,7 +403,7 @@ CREATE TABLE `li_topic_comment` (
   `likers` text,
   `oldcomment` longtext CHARACTER SET utf8 COLLATE utf8_bin,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of li_topic_comment
@@ -415,7 +418,7 @@ CREATE TABLE `li_topic_item` (
   `name` varchar(255) NOT NULL,
   `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of li_topic_item
@@ -447,7 +450,7 @@ CREATE TABLE `li_user` (
 -- ----------------------------
 -- Records of li_user
 -- ----------------------------
-INSERT INTO `li_user` VALUES ('56', 'admin', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin@jsout.com', '1', null, 'common/images/pic/avatar_7.jpg', 'site', '15', null, '2016-08-22 14:44:32', '1', '0', '0');
+INSERT INTO `li_user` VALUES ('56', 'admin', 'admin', 'f6e39087993c9038e6bd16c6506d6c1c', '876753183@qq.com', '1', null, 'common/images/pic/avatar_7.jpg', 'site', '15', null, '2016-08-22 14:44:32', '1', '0', '0');
 
 -- ----------------------------
 -- Table structure for li_user_collect
@@ -463,7 +466,7 @@ CREATE TABLE `li_user_collect` (
   `aid` int(11) DEFAULT NULL COMMENT '文章id',
   `iscollect` int(11) DEFAULT '1' COMMENT '是否收藏',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of li_user_collect

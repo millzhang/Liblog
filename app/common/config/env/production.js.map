@@ -3,10 +3,14 @@
     "sources": [
         "..\\..\\..\\..\\src\\common\\config\\env\\production.js"
     ],
-    "names": [],
-    "mappings": "AAAA;;;kBAEe,E",
+    "names": [
+        "proxy_on",
+        "resource_on",
+        "cluster_on"
+    ],
+    "mappings": "AAAA;;;kBAEe;AACbA,YAAU,IADG;AAEbC,eAAY,IAFC;AAGbC,cAAY;AAHC,C",
     "file": "..\\..\\..\\..\\src\\common\\config\\env\\production.js",
     "sourcesContent": [
-        "'use strict';\n\nexport default {\n  \n};"
+        "'use strict';\n\nexport default {\n  proxy_on: true,\n  resource_on:true,\n  cluster_on: true\n};"
     ]
 }
