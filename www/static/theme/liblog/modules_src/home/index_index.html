@@ -3,7 +3,7 @@
 <meta name="keywords" content="{{_web.keywords}}">
 <meta name="description" content="{{_web.description}}"> {{ super() }}
 <link href="{{_web.url}}{{theme_url}}/{{think.Dev_Src}}css/business/index/index_topic.css" rel="stylesheet"> {% endblock %} {% block content_top %}
-<section class="focusbox-wrapper container">
+<!-- <section class="focusbox-wrapper container">
   <div class="row">
     <div class="col-md-9">
       <div class="focusmo">
@@ -12,7 +12,7 @@
           <li class="large">
             <span>
               <a href="/page/{{item.id}}.html" target="_blank">
-                <img src="{{_web.url}}{{'static/common/images/common/default.jpg' if item.picurl=='' else item.picurl }}" alt="" class="thumb"
+                <img src="{{'http://oritfw5nq.bkt.clouddn.com/v2-8ce7da1a815811a0aab57434ac59277c_r.jpg' if item.picurl=='' else item.picurl }}" alt="" class="thumb"
                   title="{{item.title}}">
                 <span>
                   <h4>{{item.title}}</h4>
@@ -24,7 +24,7 @@
           <li>
             <span>
               <a href="/page/{{item.id}}.html" target="_blank">
-                <img src="{{_web.url}}{{'static/common/images/common/default.jpg' if item.picurl=='' else item.picurl }}" alt="" class="thumb"
+                <img src="{{'http://oritfw5nq.bkt.clouddn.com/image.jpg' if item.picurl=='' else item.picurl }}" alt="" class="thumb"
                   title="{{item.title}}">
                 <span>
                   <h4>{{item.title}}</h4>
@@ -54,7 +54,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 {% endblock %} {% block content %}
 <div class="topnews">
   <div class="h2">
@@ -67,7 +67,7 @@
   <div class="blogs">
     <figure>
       <a href="/page/{{item.id}}.html" target="_blank">
-        <img src="{{_web.url}}{{'static/common/images/common/default.jpg' if item.picurl=='' else item.picurl }}" title="{{item.title}}">
+        <img src="{{'http://oritfw5nq.bkt.clouddn.com/wall-303.jpg' if item.picurl=='' else item.picurl }}" title="{{item.title}}">
       </a>
     </figure>
     <ul class="articleul">
