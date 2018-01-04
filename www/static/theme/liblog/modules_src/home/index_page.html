@@ -2,8 +2,15 @@
 <title>{{title}}-{{_web.sitename}}</title>
 <meta name="keywords" content="{{blogInfo.keywords}}">
 <meta name="description" content="{{title}}-{{_web.sitename}}"> {{ super() }}
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 <link rel="stylesheet" href="{{_web.url}}{{theme_url}}/vendors/github-markdown/github-markdown.css">
-<link rel="stylesheet" href="{{_web.url}}{{theme_url}}/{{think.Dev_Src}}css/business/page/page.css"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="{{_web.url}}{{theme_url}}/{{think.Dev_Src}}css/business/page/page.css">
+<link rel="stylesheet" href="{{_web.url}}{{theme_url}}/{{think.Dev_Src}}css/business/custom/index.css">
+ {% endblock %} {% block content %}
 <div class="topnews">
     <div class="h2">
         <ol class="breadcrumb">
