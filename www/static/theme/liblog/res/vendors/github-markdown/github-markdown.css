@@ -365,6 +365,7 @@
 .markdown-body ul,
 .markdown-body ol {
   padding-left: 2em;
+  list-style: disc;
 }
 
 .markdown-body ul ul,
@@ -395,7 +396,6 @@
   padding: 0 16px;
   margin-bottom: 16px;
 }
-
 
 .markdown-body table {
   display: block;
@@ -429,7 +429,6 @@
   box-sizing: content-box;
   background-color: #fff;
 }
-
 
 .markdown-body kbd {
   display: inline-block;

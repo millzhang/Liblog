@@ -28,7 +28,7 @@
     <div class="tab-main main-right" id="tb-main">
         <div class="bd bd-news" style="display:block;">
             <ul>
-                {% article data = "popularList",limit= "5",type="hot"%} {% for item in popularList %}
+                {% article data = "popularList",limit= "10",type="hot"%} {% for item in popularList %}
                 <li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">
 										{{item.title}}
 									</a></li>
@@ -37,7 +37,7 @@
         </div>
         <div class="bd bd-news">
             <ul>
-                {% article data = "newestList",limit= "5"%} {% for item in newestList %}
+                {% article data = "newestList",limit= "10"%} {% for item in newestList %}
                 <li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">{{item.title}}</a></li>
                 {% endfor %}
             </ul>
