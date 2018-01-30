@@ -1,9 +1,6 @@
-'use strict';
+'use strict';exports.__esModule = true;exports.default =
 
-exports.__esModule = true;
-exports.default = {
+{
   proxy_on: true,
   resource_on: true,
-  cluster_on: true
-};
-//# sourceMappingURL=production.js.map
+  cluster_on: true };

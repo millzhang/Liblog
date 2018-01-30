@@ -351,15 +351,25 @@ article.index {
 
 .logo a {
 	background-position: 50% 50%;
-	height: 44px;
+	height: 55px;
 	text-indent: -9999px;
 	overflow: hidden;
-	display: block;
 	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .logo a img {
-	width: 50px;
+	width: 50px
+}
+
+.slogan {
+	display: inline-block;
+	vertical-align: middle;
+	background: url(http://oritfw5nq.bkt.clouddn.com/1517306369_495384.png) center no-repeat;
+	background-size: cover;
+	width: 490px;
+	height: 33px;
 }
 
 .brand {
@@ -903,8 +913,7 @@ article.index {
 	display: none;
 }
 
-.site-search {
-}
+.site-search {}
 
 .site-search.active {
 	top: 106px;
@@ -967,7 +976,6 @@ article.index {
 	margin: -15px 0 15px;
 	border-bottom: 1px solid #eaeaea;
 }
-
 
 /*right github*/
 
@@ -1036,7 +1044,6 @@ header.header {
 
 header.index {}
 
-
 /*个人头像及下拉*/
 
 #userInfo .img-circle {
@@ -1087,9 +1094,7 @@ header.index {}
 	margin-right: 10%;
 }
 
-
 /*个人头像及下拉*/
-
 
 /*bootstrap基本页面框架设置*/
 
@@ -1143,7 +1148,6 @@ header.index {}
 	padding-left: 0px;
 	padding-right: 15px;
 }
-
 
 /*topic*/
 
