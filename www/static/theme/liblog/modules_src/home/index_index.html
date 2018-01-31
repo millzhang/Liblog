@@ -59,20 +59,20 @@
 <div class="topnews">
   <div class="h2">
     <span>
-      <a href="/more.html" target="_blank">更多>></a>
+      <a href="/more.html">更多>></a>
     </span>
     文章推荐
   </div>
   {% article data = "topList",limit= "10",flag="totop"%} {% for item in topList %}
   <div class="blogs">
     <figure>
-      <a href="/page/{{item.id}}.html" target="_blank">
+      <a href="/page/{{item.id}}.html">
         <img src="{{'http://oritfw5nq.bkt.clouddn.com/wall-303.jpg' if item.picurl=='' else item.picurl }}" title="{{item.title}}">
       </a>
     </figure>
     <ul class="articleul">
       <h3>
-        <a href="/page/{{item.id}}.html" target="_blank">{{item.title}}</a>
+        <a href="/page/{{item.id}}.html">{{item.title}}</a>
       </h3>
       <p>{{item.abstract}}</p>
       <div class="author">
@@ -83,7 +83,7 @@
       </div>
       <div class="author">
         <span class="viewnum f_r">
-          浏览（{{item.view}}）</span>
+          浏览（{{100+item.view}}）</span>
         <span class="pingl f_r">
           评论（
           <span id="sourceId::{{item.id}}" class="cy_cmt_count" style="margin: 0px;padding: 0px"></span>）

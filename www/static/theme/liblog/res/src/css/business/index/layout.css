@@ -369,7 +369,7 @@ article.index {
 	background: url(http://oritfw5nq.bkt.clouddn.com/1517306369_495384.png) center no-repeat;
 	background-size: cover;
 	width: 490px;
-	height: 33px;
+	height: 33px!important;
 }
 
 .brand {

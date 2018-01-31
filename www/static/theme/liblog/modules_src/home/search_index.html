@@ -11,7 +11,7 @@
 			<div class="h2">
 				<span>
 					{% if more!=1 %}
-						<a href="/more.html" target="_blank">更多>></a>
+						<a href="/more.html">更多>></a>
 					{% endif %}
 				</span>
 				 <ol class="breadcrumb">
@@ -30,7 +30,7 @@
 								</div>
 								<div class="author second">
 										<span class="viewnum f_r">
-										浏览（{{item.view}}）</span>
+										浏览（{{100+item.view}}）</span>
 								</div>
 							 </ul>
 						</div>
@@ -42,14 +42,14 @@
 			<div class="topnews recom">
 				<div class="h2">
 						<span>
-							<a href="/more.html" target="_blank">更多&gt;&gt;</a>
+							<a href="/more.html">更多&gt;&gt;</a>
 						</span>
 					您可能感兴趣
 				</div>
 				<div class="blogs">
 					<ul style="width:98%">
 						{% for item in torecomList %}
-							<li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">{{item.title}}</a></li>
+							<li><a href="/page/{{item.id}}.html" title="{{item.title}}">{{item.title}}</a></li>
 						{%endfor%}
 					</ul>
 				</div>

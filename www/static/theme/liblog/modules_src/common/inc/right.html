@@ -29,7 +29,7 @@
         <div class="bd bd-news" style="display:block;">
             <ul>
                 {% article data = "popularList",limit= "10",type="hot"%} {% for item in popularList %}
-                <li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">
+                <li><a href="/page/{{item.id}}.html" title="{{item.title}}">
 										{{item.title}}
 									</a></li>
                 {% endfor %}
@@ -38,14 +38,14 @@
         <div class="bd bd-news">
             <ul>
                 {% article data = "newestList",limit= "10"%} {% for item in newestList %}
-                <li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">{{item.title}}</a></li>
+                <li><a href="/page/{{item.id}}.html"  title="{{item.title}}">{{item.title}}</a></li>
                 {% endfor %}
             </ul>
         </div>
         <div class="bd bd-news">
             <ul>
                 {% article data = "torecomList",limit= "5",flag="torecom"%} {% for item in torecomList %}
-                <li><a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">{{item.title}}</a></li>
+                <li><a href="/page/{{item.id}}.html" title="{{item.title}}">{{item.title}}</a></li>
                 {% endfor %}
             </ul>
         </div>

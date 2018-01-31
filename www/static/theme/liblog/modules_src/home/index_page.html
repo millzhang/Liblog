@@ -18,7 +18,7 @@
                 <a href="{{_web.url}}">首页</a>
             </li>
             <li>
-                <a href="/category/{{blogInfo.tag}}.html" target="_blank">{{tagname}}</a>
+                <a href="/category/{{blogInfo.tag}}.html">{{tagname}}</a>
             </li>
             <li class="active">{{blogInfo.title}}</li>
         </ol>
@@ -33,7 +33,7 @@
                 <span>
                     <i class="glyphicon glyphicon-tags"></i>
                     栏目：
-                    <a href="/category/{{blogInfo.tag}}.html" target="_blank">{{tagname}}</a>
+                    <a href="/category/{{blogInfo.tag}}.html">{{tagname}}</a>
                 </span>
                 <span>
                     <i class="glyphicon glyphicon-eye-open"></i> 浏览：{{blogInfo.view}}次</span>
@@ -58,7 +58,7 @@
         <div class="topnews recom">
             <div class="h2">
                 <span>
-                    <a href="/more.html" target="_blank">更多&gt;&gt;</a>
+                    <a href="/more.html">更多&gt;&gt;</a>
                 </span>
                 您可能感兴趣
             </div>
@@ -66,7 +66,7 @@
                 <ul>
                     {% for item in relatearticle %}
                     <li>
-                        <a href="/page/{{item.id}}.html" target="_blank" title="{{item.title}}">{{item.title}}</a>
+                        <a href="/page/{{item.id}}.html" title="{{item.title}}">{{item.title}}</a>
                     </li>
                     {% endfor %}
                 </ul>
